@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Commerciale &mdash; Fratelli Di Rosa | EMC Digital Solutions</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #0a0e15;
+            --bg-primary: #141821;
+            --bg-card: #1a1f2e;
+            --accent: #7b8fa3;
+            --accent-light: #9bb0c4;
+            --accent-silver: #a8bfd1;
+            --accent-bright: #c5d5e4;
+            --text-primary: #e8eaed;
+            --text-light: #c0c4cc;
+            --text-muted: #8a919c;
+            --border-cool: rgba(123, 143, 163, 0.15);
+        }
+
+        html { scroll-snap-type: y mandatory; overflow-y: scroll; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-deep);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.2; }
+
+        /* ===== SLIDES ===== */
+        .slide {
+            min-height: 100vh; scroll-snap-align: start;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; padding: 60px 24px; overflow: hidden;
+        }
+        .slide-inner { max-width: 900px; width: 100%; z-index: 2; position: relative; }
+        .slide:nth-child(odd) { background: var(--bg-primary); }
+        .slide:nth-child(even) { background: var(--bg-deep); }
+        .slide-number { position: absolute; bottom: 24px; right: 32px; font-size: .75rem; font-weight: 600; letter-spacing: 2px; color: var(--text-muted); opacity: .5; }
+
+        /* ===== NAV DOTS ===== */
+        .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 12px; }
+        .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted); opacity: .35; cursor: pointer; transition: all .3s; border: none; padding: 0; }
+        .nav-dot:hover { opacity: .7; transform: scale(1.3); }
+        .nav-dot.active { background: var(--accent-light); opacity: 1; transform: scale(1.3); }
+
+        /* ===== DECORATIONS ===== */
+        .geo-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .geo-circle { position: absolute; border: 1px solid var(--accent); border-radius: 50%; opacity: .04; }
+        .geo-1 { top: 15%; left: 5%; width: 80px; height: 80px; }
+        .geo-2 { top: 60%; right: 8%; width: 120px; height: 120px; opacity: .03; }
+        .geo-3 { bottom: 20%; left: 10%; width: 60px; height: 60px; }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: .1s; } .stagger-2 { transition-delay: .2s; }
+        .stagger-3 { transition-delay: .3s; } .stagger-4 { transition-delay: .4s; }
+        .stagger-5 { transition-delay: .5s; } .stagger-6 { transition-delay: .6s; }
+
+        /* ===== COVER ===== */
+        .cover-slide { text-align: center; background: linear-gradient(170deg, var(--bg-primary) 0%, var(--bg-deep) 100%) !important; }
+        .cover-label { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-light); margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+        .cover-brand { font-size: 3.5rem; color: var(--accent-light); margin-bottom: 8px; text-shadow: 0 2px 20px rgba(123,143,163,.2); }
+        .cover-subtitle { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; color: var(--text-light); margin-bottom: 40px; font-weight: 400; }
+        .cover-divider { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 0 auto 40px; }
+        .cover-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; color: var(--text-primary); margin-bottom: 12px; }
+        .cover-date { font-size: .9rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+        .cover-ring { position: absolute; width: 400px; height: 400px; border: 1px solid var(--accent); opacity: .05; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; }
+        .cover-ring-2 { position: absolute; width: 520px; height: 520px; border: 1px solid var(--accent); opacity: .03; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; }
+        .cover-cross { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 0; }
+
+        /* ===== SECTIONS ===== */
+        .section-label { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-light); margin-bottom: 16px; font-family: 'Inter', sans-serif; }
+        .section-title { font-size: 2.2rem; color: var(--accent-light); margin-bottom: 20px; }
+        .section-text { font-size: 1.05rem; color: var(--text-light); line-height: 1.8; max-width: 700px; }
+        .section-text + .section-text { margin-top: 16px; }
+
+        /* ===== CARDS ===== */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 32px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border-cool); border-radius: 12px; padding: 28px 24px; transition: transform .3s, border-color .3s; }
+        .card:hover { transform: translateY(-3px); border-color: rgba(123,143,163,.3); }
+        .card-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+        .card h4 { font-size: 1.1rem; color: var(--accent-light); margin-bottom: 10px; }
+        .card p { font-size: .92rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ===== FEATURE LIST ===== */
+        .feature-list { list-style: none; margin-top: 28px; }
+        .feature-list li { position: relative; padding: 12px 0 12px 36px; font-size: 1rem; color: var(--text-light); border-bottom: 1px solid var(--border-cool); }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-list li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: .7; }
+
+        /* ===== TWO COLUMNS ===== */
+        .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
+        .col-box { background: var(--bg-card); border: 1px solid var(--border-cool); border-radius: 12px; padding: 28px 24px; }
+        .col-box h4 { font-size: 1.05rem; color: var(--accent-light); margin-bottom: 14px; }
+        .col-box ul { list-style: none; }
+        .col-box ul li { position: relative; padding: 6px 0 6px 22px; font-size: .92rem; color: var(--text-light); }
+        .col-box ul li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 2px; background: var(--accent); opacity: .6; }
+
+        /* ===== PRICING ===== */
+        .pricing-table { margin-top: 32px; width: 100%; }
+        .pricing-item { display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; background: var(--bg-card); border: 1px solid var(--border-cool); border-radius: 12px; margin-bottom: 16px; transition: border-color .3s; }
+        .pricing-item:hover { border-color: rgba(123,143,163,.35); }
+        .pricing-item-main { border: 2px solid var(--accent); position: relative; }
+        .pricing-item-main::after { content: 'Consigliato'; position: absolute; top: -10px; right: 20px; background: var(--accent); color: var(--bg-deep); font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 3px 10px; border-radius: 4px; font-family: 'Inter', sans-serif; }
+        .pricing-label h4 { font-size: 1.15rem; color: var(--text-primary); margin-bottom: 4px; }
+        .pricing-label p { font-size: .85rem; color: var(--text-muted); font-family: 'Inter', sans-serif; }
+        .pricing-value { text-align: right; }
+        .pricing-amount { font-size: 1.8rem; font-weight: 700; color: var(--accent-light); }
+        .pricing-period { font-size: .8rem; color: var(--text-muted); font-family: 'Inter', sans-serif; }
+        .pricing-original { font-size: 1.1rem; color: var(--text-muted); text-decoration: line-through; opacity: .6; margin-bottom: 2px; }
+        .pricing-friend { font-size: .7rem; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; font-family: 'Inter', sans-serif; }
+        .pricing-note { text-align: center; margin-top: 24px; padding: 16px; background: rgba(123,143,163,.06); border-radius: 8px; border: 1px solid var(--border-cool); }
+        .pricing-note p { font-size: .9rem; color: var(--text-light); }
+        .pricing-note strong { color: var(--accent-light); }
+
+        /* ===== TIMELINE ===== */
+        .timeline { margin-top: 32px; position: relative; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent), var(--accent-silver), transparent); opacity: .4; }
+        .timeline-item { position: relative; padding-bottom: 32px; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before { content: ''; position: absolute; left: -33px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg-deep); }
+        .timeline-item.highlight::before { background: var(--accent-bright); box-shadow: 0 0 12px rgba(155,176,196,.4); }
+        .timeline-label { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-light); margin-bottom: 4px; font-family: 'Inter', sans-serif; }
+        .timeline-title { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 6px; }
+        .timeline-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ===== CONTACT ===== */
+        .contact-slide { text-align: center; }
+        .contact-cta { font-size: 1.8rem; color: var(--accent-light); margin-bottom: 12px; }
+        .contact-sub { font-size: 1.05rem; color: var(--text-light); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .contact-info { display: flex; flex-direction: column; gap: 16px; align-items: center; margin-bottom: 40px; }
+        .contact-row { display: flex; align-items: center; gap: 12px; font-size: 1rem; color: var(--text-light); }
+        .contact-row-icon { width: 40px; height: 40px; background: var(--bg-card); border: 1px solid var(--border-cool); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .contact-row a { color: var(--accent-light); text-decoration: none; transition: color .3s; }
+        .contact-row a:hover { color: var(--accent-bright); }
+        .emc-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border-cool); }
+
+        /* ===== TONE BADGE ===== */
+        .tone-badge { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, rgba(123,143,163,.12), rgba(155,176,196,.06)); border: 1px solid rgba(123,143,163,.25); border-radius: 50px; padding: 10px 22px; margin-bottom: 28px; }
+        .tone-badge-icon { font-size: 1.2rem; }
+        .tone-badge-text { font-size: .85rem; font-weight: 600; color: var(--accent-light); letter-spacing: 1px; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+
+        /* ===== CATEGORY GRID ===== */
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 28px; }
+        .cat-item { background: var(--bg-card); border: 1px solid var(--border-cool); border-radius: 10px; padding: 20px 18px; text-align: center; transition: transform .3s, border-color .3s; }
+        .cat-item:hover { transform: translateY(-2px); border-color: rgba(123,143,163,.3); }
+        .cat-item-icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+        .cat-item h4 { font-size: .95rem; color: var(--accent-light); margin-bottom: 6px; font-family: 'Inter', sans-serif; font-weight: 600; }
+        .cat-item p { font-size: .8rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* ===== QUOTE ===== */
+        .quote-block { margin-top: 32px; padding: 28px 32px; background: rgba(123,143,163,.06); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; }
+        .quote-block p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--text-light); line-height: 1.7; }
+        .quote-block cite { display: block; margin-top: 12px; font-size: .85rem; color: var(--text-muted); font-style: normal; font-family: 'Inter', sans-serif; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .slide { padding: 48px 20px; }
+            .cover-brand { font-size: 2.4rem; }
+            .cover-title { font-size: 1.3rem; }
+            .section-title { font-size: 1.7rem; }
+            .card-grid, .cat-grid { grid-template-columns: 1fr; }
+            .two-cols { grid-template-columns: 1fr; }
+            .pricing-item { flex-direction: column; text-align: center; gap: 12px; }
+            .pricing-value { text-align: center; }
+            .pricing-item-main::after { right: auto; left: 50%; transform: translateX(-50%); }
+            .nav-dots { right: 10px; gap: 8px; }
+            .nav-dot { width: 8px; height: 8px; }
+            .contact-cta { font-size: 1.4rem; }
+            .cover-ring { width: 280px; height: 280px; }
+            .cover-ring-2 { width: 360px; height: 360px; }
+        }
+        @media (max-width: 480px) {
+            .cover-brand { font-size: 1.9rem; }
+            .section-title { font-size: 1.4rem; }
+            .pricing-amount { font-size: 1.4rem; }
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            html { scroll-snap-type: none; }
+            body { background: #fff; color: #1a1a1a; }
+            .slide { min-height: auto; scroll-snap-align: none; page-break-inside: avoid; page-break-after: always; padding: 40px 30px; background: #fff !important; }
+            .slide:last-child { page-break-after: auto; }
+            .nav-dots, .geo-bg, .cover-ring, .cover-ring-2, .cover-cross { display: none; }
+            .section-title, .cover-brand, .contact-cta { color: #141821 !important; }
+            .section-label, .cover-label, .timeline-label, .tone-badge-text { color: #5a6e80 !important; }
+            .section-text, .feature-list li, .card p, .timeline-desc, .col-box ul li, .cat-item p { color: #333 !important; }
+            .card, .pricing-item, .col-box, .pricing-note, .cat-item, .quote-block { background: #f4f6f8 !important; border-color: #7b8fa3 !important; }
+            .pricing-amount { color: #5a6e80 !important; }
+            .pricing-item-main { border-color: #7b8fa3 !important; }
+            .pricing-item-main::after { background: #7b8fa3 !important; color: #fff !important; }
+            .card h4, .col-box h4, .timeline-title, .pricing-label h4, .cat-item h4 { color: #141821 !important; }
+            .cover-subtitle, .contact-sub { color: #555 !important; }
+            a { color: #5a6e80 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-dots" aria-label="Navigazione slides">
+        <button class="nav-dot active" data-slide="0" aria-label="Copertina"></button>
+        <button class="nav-dot" data-slide="1" aria-label="Chi Siamo"></button>
+        <button class="nav-dot" data-slide="2" aria-label="La Vostra Attivita"></button>
+        <button class="nav-dot" data-slide="3" aria-label="Social Media"></button>
+        <button class="nav-dot" data-slide="4" aria-label="Comunicazione"></button>
+        <button class="nav-dot" data-slide="5" aria-label="Refactoring Sito"></button>
+        <button class="nav-dot" data-slide="6" aria-label="Investimento"></button>
+        <button class="nav-dot" data-slide="7" aria-label="Tempistiche"></button>
+        <button class="nav-dot" data-slide="8" aria-label="Contatti"></button>
+    </nav>
+
+    <!-- ===== SLIDE 1: COVER ===== -->
+    <section class="slide cover-slide" id="slide-0">
+        <div class="geo-bg"><div class="geo-circle geo-1"></div><div class="geo-circle geo-2"></div><div class="geo-circle geo-3"></div></div>
+        <div class="cover-ring"></div>
+        <div class="cover-ring-2"></div>
+        <svg class="cover-cross" width="120" height="180" viewBox="0 0 120 180">
+            <rect x="45" y="0" width="30" height="180" fill="currentColor" opacity=".04"/>
+            <rect x="0" y="40" width="120" height="30" fill="currentColor" opacity=".04"/>
+        </svg>
+
+        <div class="slide-inner">
+            <div class="fade-in stagger-1"><p class="cover-label">Proposta Commerciale</p></div>
+            <div class="fade-in stagger-2"><h1 class="cover-brand">Fratelli Di Rosa</h1></div>
+            <div class="fade-in stagger-3"><p class="cover-subtitle">Agenzia Funebre &mdash; Ravanusa (AG)</p></div>
+            <div class="fade-in stagger-4"><div class="cover-divider"></div></div>
+            <div class="fade-in stagger-5"><p class="cover-title">Visibilit&agrave; Digitale per la Vostra Attivit&agrave;</p></div>
+            <div class="fade-in stagger-6"><p class="cover-date">Aprile 2026</p></div>
+        </div>
+        <span class="slide-number">01 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 2: CHI SIAMO (EMC) ===== -->
+    <section class="slide" id="slide-1">
+        <div class="geo-bg"><div class="geo-circle geo-2"></div></div>
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Chi Siamo</p>
+                <h2 class="section-title">EMC Digital Solutions</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <p class="section-text">
+                    Siamo un&rsquo;agenzia digitale siciliana specializzata nella creazione di siti web professionali,
+                    gestione social media e soluzioni digitali su misura per attivit&agrave; locali.
+                </p>
+            </div>
+            <div class="fade-in stagger-2">
+                <p class="section-text">
+                    Lavoriamo fianco a fianco con imprenditori del territorio per costruire una presenza
+                    online efficace, professionale e capace di generare fiducia e risultati concreti.
+                </p>
+            </div>
+            <div class="card-grid fade-in stagger-3">
+                <div class="card">
+                    <span class="card-icon">&#127760;</span>
+                    <h4>Siti Web</h4>
+                    <p>Design moderno e responsive, ottimizzati per dispositivi mobili e motori di ricerca.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128242;</span>
+                    <h4>Social Media</h4>
+                    <p>Gestione professionale dei canali social con contenuti di qualit&agrave; e strategia editoriale mirata.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128202;</span>
+                    <h4>Strategia Digitale</h4>
+                    <p>Consulenza personalizzata per massimizzare la visibilit&agrave; online della vostra attivit&agrave;.</p>
+                </div>
+            </div>
+
+            <div class="fade-in stagger-4" style="margin-top: 32px; padding: 28px 32px; background: rgba(123,143,163,.06); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0;">
+                <h4 style="color: var(--accent-light); margin-bottom: 12px; font-size: 1.1rem;">&#128100; Un Consulente Dedicato, Non un Numero di Ticket</h4>
+                <p style="font-size: .95rem; color: var(--text-light); line-height: 1.8;">
+                    Con noi non troverete piattaforme di ticketing, email che restano in coda per giorni
+                    o risposte automatiche. Avrete un consulente dedicato, presente sul territorio,
+                    raggiungibile direttamente su WhatsApp. Risposte rapide, contenuti personalizzati
+                    sulle vostre esigenze reali e la flessibilit&agrave; di chi vi conosce davvero.
+                    Lavoriamo come un&rsquo;estensione del vostro team, non come un fornitore lontano.
+                </p>
+            </div>
+        </div>
+        <span class="slide-number">02 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 3: LA VOSTRA ATTIVITA ===== -->
+    <section class="slide" id="slide-2">
+        <div class="geo-bg"><div class="geo-circle geo-1"></div></div>
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Analisi</p>
+                <h2 class="section-title">La Vostra Attivit&agrave;</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <p class="section-text">
+                    Giuseppe, la vostra agenzia ha solide basi: una tradizione familiare che parte dal 1999,
+                    certificazioni professionali, un laboratorio floreale interno e la reperibilit&agrave; H24.
+                    Tutto ci&ograve; che serve per emergere nel digitale c&rsquo;&egrave; gi&agrave;.
+                </p>
+            </div>
+
+            <div class="two-cols fade-in stagger-2">
+                <div class="col-box">
+                    <h4>&#11088; Punti di Forza</h4>
+                    <ul>
+                        <li>Impresa familiare con tradizione dal 1999</li>
+                        <li>Certificazioni professionali riconosciute</li>
+                        <li>Reperibilit&agrave; H24, diurno e notturno</li>
+                        <li>Laboratorio floreale interno</li>
+                        <li>Servizio completo: dalla burocrazia alla cerimonia</li>
+                        <li>Trasporti nazionali e internazionali con mezzi propri</li>
+                    </ul>
+                </div>
+                <div class="col-box">
+                    <h4>&#128161; Opportunit&agrave;</h4>
+                    <ul>
+                        <li>Gestione social professionale e costante</li>
+                        <li>Contenuti oltre i soli manifesti funebri</li>
+                        <li>SEO locale: &ldquo;agenzia funebre Ravanusa&rdquo;</li>
+                        <li>Rafforzamento della reputazione online</li>
+                        <li>Differenziazione da Messana Jean e Montana-Pennica</li>
+                        <li>Diventare il primo nome che viene in mente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-block fade-in stagger-3">
+                <p>&ldquo;Farmi conoscere per quello che realmente siamo.&rdquo;</p>
+                <cite>&mdash; Giuseppe Di Rosa, dal questionario</cite>
+            </div>
+        </div>
+        <span class="slide-number">03 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 4: SOCIAL MEDIA ===== -->
+    <section class="slide" id="slide-3">
+        <div class="geo-bg"><div class="geo-circle geo-3"></div></div>
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Servizio Principale</p>
+                <h2 class="section-title">Social Media Management</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <p class="section-text">
+                    Gestione professionale delle vostre pagine Facebook e Instagram con contenuti pensati
+                    per comunicare seriet&agrave;, vicinanza e professionalit&agrave;. Basta con il dubbio
+                    di &ldquo;cosa sia giusto pubblicare&rdquo;: ci pensiamo noi.
+                </p>
+            </div>
+
+            <div class="card-grid fade-in stagger-2">
+                <div class="card">
+                    <span class="card-icon">&#128197;</span>
+                    <h4>12 Post al Mese</h4>
+                    <p>3 contenuti a settimana su Facebook e Instagram, con immagini curate e testi dal tono rispettoso e diretto.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128221;</span>
+                    <h4>Piano Editoriale</h4>
+                    <p>Strategia mensile: servizi, struttura, composizioni floreali, dietro le quinte, frasi di conforto, ricorrenze.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#128172;</span>
+                    <h4>Gestione Commenti</h4>
+                    <p>Risposte ai commenti con tono empatico. I messaggi privati restano sotto il vostro controllo diretto.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">&#9989;</span>
+                    <h4>Approvazione Preventiva</h4>
+                    <p>Ogni post viene inviato via WhatsApp per la vostra approvazione prima della pubblicazione. Nessuna sorpresa.</p>
+                </div>
+            </div>
+
+            <div class="fade-in stagger-3" style="margin-top: 24px;">
+                <p class="section-text" style="font-size: .9rem; color: var(--text-muted);">
+                    Include: hashtag strategy, orari di pubblicazione ottimizzati, report mensile con metriche di crescita.
+                </p>
+            </div>
+        </div>
+        <span class="slide-number">04 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 5: COMUNICAZIONE SETTORE FUNEBRE ===== -->
+    <section class="slide" id="slide-4">
+        <div class="geo-bg"><div class="geo-circle geo-2"></div></div>
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Strategia</p>
+                <h2 class="section-title">Comunicazione per il Settore Funebre</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <div class="tone-badge">
+                    <span class="tone-badge-icon">&#128156;</span>
+                    <span class="tone-badge-text">Rispetto &bull; Discrezione &bull; Professionalit&agrave;</span>
+                </div>
+            </div>
+            <div class="fade-in stagger-2">
+                <p class="section-text">
+                    Comunicare nel settore delle onoranze funebri richiede sensibilit&agrave; e competenza.
+                    Ogni contenuto sar&agrave; pensato per trasmettere affidabilit&agrave; e vicinanza,
+                    senza mai risultare invadente o inappropriato. Mai prezzi, mai toni commerciali.
+                </p>
+            </div>
+
+            <div class="cat-grid fade-in stagger-3">
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#128188;</span>
+                    <h4>Servizi Offerti</h4>
+                    <p>Trasporto, vestizione, camera ardente, cremazioni, pratiche</p>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#127969;</span>
+                    <h4>Struttura e Mezzi</h4>
+                    <p>La sede di Via Olimpica 18, sala del commiato, veicoli</p>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#127800;</span>
+                    <h4>Composizioni Floreali</h4>
+                    <p>Dal vostro laboratorio floreale interno</p>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#128101;</span>
+                    <h4>Il Team al Lavoro</h4>
+                    <p>Giuseppe e Gaspare: tradizione e dedizione</p>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#128147;</span>
+                    <h4>Frasi di Conforto</h4>
+                    <p>Pensieri rispettosi e commemorazioni</p>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#128338;</span>
+                    <h4>Disponibilit&agrave; H24</h4>
+                    <p>Sempre presenti, di giorno e di notte</p>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#127963;</span>
+                    <h4>Ricorrenze</h4>
+                    <p>2 Novembre, San Vito, Sant&rsquo;Antonio, San Giuseppe</p>
+                </div>
+                <div class="cat-item">
+                    <span class="cat-item-icon">&#11088;</span>
+                    <h4>Testimonianze</h4>
+                    <p>Feedback delle famiglie assistite</p>
+                </div>
+            </div>
+        </div>
+        <span class="slide-number">05 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 6: SITO WEB ===== -->
+    <section class="slide" id="slide-5">
+        <div class="geo-bg"><div class="geo-circle geo-1"></div></div>
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Omaggio</p>
+                <h2 class="section-title">Refactoring Completo del Sito Web</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <p class="section-text">
+                    Vi realizziamo un sito web completamente nuovo, moderno e ottimizzato,
+                    costruito su misura per la vostra attivit&agrave;. Design professionale, responsive,
+                    veloce e pensato per farvi trovare subito su Google quando qualcuno cerca
+                    &ldquo;agenzia funebre Ravanusa&rdquo;.
+                </p>
+            </div>
+            <div class="fade-in stagger-2">
+                <p class="section-text" style="font-style: italic; color: var(--accent-light);">
+                    Il refactoring del sito &egrave; un nostro regalo di benvenuto: lo rifacciamo completamente
+                    a costo zero per voi.
+                </p>
+            </div>
+
+            <ul class="feature-list fade-in stagger-3">
+                <li>Design moderno e professionale con palette coerente al vostro brand</li>
+                <li>Sito responsive ottimizzato per smartphone, tablet e desktop</li>
+                <li>SEO locale per posizionarsi su &ldquo;agenzia funebre Ravanusa&rdquo; e ricerche correlate</li>
+                <li>Galleria fotografica dei servizi, struttura e composizioni floreali</li>
+                <li>Sezione contatti con WhatsApp, email e mappa interattiva</li>
+                <li><strong>Registrazione Google Maps / Google My Business</strong> &mdash; la vostra attivit&agrave; visibile su Google Maps con indirizzo, orari, foto e recensioni clienti</li>
+                <li>Certificato SSL e hosting web professionale inclusi</li>
+                <li>Dominio personalizzato dedicato</li>
+            </ul>
+        </div>
+        <span class="slide-number">06 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 7: INVESTIMENTO ===== -->
+    <section class="slide" id="slide-6">
+        <div class="geo-bg"><div class="geo-circle geo-3"></div></div>
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Investimento</p>
+                <h2 class="section-title">Il Vostro Investimento</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <p class="section-text">
+                    Prezzi chiari e trasparenti, senza sorprese. Un investimento concreto per diventare
+                    il primo nome che viene in mente a Ravanusa.
+                </p>
+            </div>
+
+            <div class="pricing-table fade-in stagger-2">
+                <div class="pricing-item" style="border: 2px solid rgba(76, 175, 80, 0.5); position: relative;">
+                    <div style="position: absolute; top: -10px; right: 20px; background: #4CAF50; color: #fff; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 3px 10px; border-radius: 4px; font-family: 'Inter', sans-serif;">Omaggio</div>
+                    <div class="pricing-label">
+                        <h4>Refactoring Completo Sito Web</h4>
+                        <p>Design nuovo, responsive, SEO locale, galleria, contatti, mappa interattiva, registrazione Google Maps</p>
+                    </div>
+                    <div class="pricing-value">
+                        <span class="pricing-original">&euro;500</span>
+                        <span class="pricing-amount" style="color: #4CAF50;">GRATIS</span>
+                        <span class="pricing-period">una tantum</span>
+                        <span class="pricing-friend" style="color: #4CAF50;">Regalo di benvenuto</span>
+                    </div>
+                </div>
+
+                <div class="pricing-item pricing-item-main">
+                    <div class="pricing-label">
+                        <h4>Social Media Management</h4>
+                        <p>12 post/mese (3 a settimana), piano editoriale, FB + IG, gestione commenti, report mensile, approvazione preventiva</p>
+                    </div>
+                    <div class="pricing-value">
+                        <span class="pricing-original">&euro;200/mese</span>
+                        <span class="pricing-amount">&euro;150</span>
+                        <span class="pricing-period">al mese + IVA</span>
+                        <span class="pricing-friend">Prezzo riservato</span>
+                    </div>
+                </div>
+
+                <div class="pricing-item">
+                    <div class="pricing-label">
+                        <h4>Hosting, Dominio &amp; Manutenzione</h4>
+                        <p>Hosting web, dominio personalizzato, certificato SSL, aggiornamenti, assistenza tecnica</p>
+                    </div>
+                    <div class="pricing-value">
+                        <span class="pricing-amount">&euro;80</span>
+                        <span class="pricing-period">all&rsquo;anno + IVA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-note fade-in stagger-3">
+                <p><strong>Nessun costo nascosto.</strong> Il refactoring del sito &egrave; completamente gratuito. L&rsquo;unico costo fisso &egrave; l&rsquo;hosting e dominio (&euro;80/anno + IVA) che include spazio web, certificato SSL e manutenzione. Tutti i prezzi si intendono al netto di IVA.</p>
+            </div>
+
+            <div class="fade-in stagger-4" style="margin-top: 20px; padding: 24px 28px; background: linear-gradient(135deg, rgba(76,175,80,.08), rgba(76,175,80,.03)); border: 1px solid rgba(76,175,80,.25); border-radius: 12px; display: flex; align-items: flex-start; gap: 16px;">
+                <span style="font-size: 1.6rem; flex-shrink: 0; line-height: 1;">&#128176;</span>
+                <div>
+                    <h4 style="color: #81C784; margin-bottom: 8px; font-size: 1rem;">Costi Interamente Deducibili</h4>
+                    <p style="font-size: .9rem; color: var(--text-light); line-height: 1.7;">
+                        Le spese per la comunicazione digitale, la gestione dei social media e il mantenimento
+                        del sito web sono costi aziendali a tutti gli effetti: <strong style="color: var(--accent-light);">interamente deducibili
+                        dal reddito d&rsquo;impresa</strong>. Un investimento che si ripaga due volte: in visibilit&agrave;
+                        per la vostra attivit&agrave; e in risparmio fiscale a fine anno.
+                        Inoltre, ogni fattura riporta le voci gi&agrave; suddivise per categoria &mdash; servizi tecnici
+                        (design, sviluppo, hosting) e servizi di marketing (gestione social, piano editoriale) &mdash;
+                        cos&igrave; il vostro commercialista potr&agrave; registrarle senza dover richiedere chiarimenti.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <span class="slide-number">07 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 8: TEMPISTICHE ===== -->
+    <section class="slide" id="slide-7">
+        <div class="geo-bg"><div class="geo-circle geo-1"></div><div class="geo-circle geo-2"></div></div>
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Roadmap</p>
+                <h2 class="section-title">Tempistiche</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <p class="section-text">
+                    Un percorso rapido e strutturato per attivare la gestione professionale dei vostri canali digitali.
+                </p>
+            </div>
+
+            <div class="timeline fade-in stagger-2">
+                <div class="timeline-item">
+                    <p class="timeline-label">Settimana 1</p>
+                    <p class="timeline-title">Onboarding e raccolta materiali</p>
+                    <p class="timeline-desc">
+                        Raccolta foto della struttura, dei mezzi, del team e delle composizioni floreali.
+                        Definizione del tono, degli obiettivi e del piano editoriale mensile.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-label">Settimana 2</p>
+                    <p class="timeline-title">Setup e primi contenuti</p>
+                    <p class="timeline-desc">
+                        Ottimizzazione profili Facebook e Instagram. Creazione dei primi contenuti grafici
+                        e testuali. Invio via WhatsApp per approvazione.
+                    </p>
+                </div>
+                <div class="timeline-item highlight">
+                    <p class="timeline-label">Settimana 3</p>
+                    <p class="timeline-title">Avvio pubblicazione</p>
+                    <p class="timeline-desc">
+                        Inizio della pubblicazione regolare: 3 post a settimana su entrambe le piattaforme.
+                        Attivazione del monitoraggio commenti e interazioni.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <p class="timeline-label">Ogni Mese</p>
+                    <p class="timeline-title">Report e ottimizzazione</p>
+                    <p class="timeline-desc">
+                        Report mensile con metriche di crescita, engagement e suggerimenti.
+                        Revisione del piano editoriale in base ai risultati.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <span class="slide-number">08 / 09</span>
+    </section>
+
+    <!-- ===== SLIDE 9: CONTATTI ===== -->
+    <section class="slide contact-slide" id="slide-8">
+        <div class="geo-bg"><div class="geo-circle geo-3"></div></div>
+        <div class="cover-ring" style="opacity: .03;"></div>
+
+        <div class="slide-inner">
+            <div class="fade-in">
+                <p class="section-label">Prossimi Passi</p>
+                <h2 class="contact-cta">Iniziamo Insieme</h2>
+            </div>
+            <div class="fade-in stagger-1">
+                <p class="contact-sub">
+                    Giuseppe, siamo pronti a far diventare Fratelli Di Rosa il primo nome che viene in mente a Ravanusa.
+                    Contattaci per iniziare.
+                </p>
+            </div>
+
+            <div class="contact-info fade-in stagger-2">
+                <div class="contact-row">
+                    <span class="contact-row-icon">&#127760;</span>
+                    <span><a href="https://www.emcdigitalsolutions.it" target="_blank" rel="noopener">www.emcdigitalsolutions.it</a></span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-row-icon">&#9993;</span>
+                    <span><a href="mailto:emcdigitalsolution@gmail.com">emcdigitalsolution@gmail.com</a></span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-row-icon">&#128197;</span>
+                    <span><a href="https://calendly.com/emcdigitalsolution/30min" target="_blank" rel="noopener">Prenota una call gratuita</a></span>
+                </div>
+            </div>
+
+            <div class="emc-footer fade-in stagger-3">
+                <a href="https://www.emcdigitalsolutions.it" target="_blank" rel="noopener" title="Progettato e Sviluppato da EMC Digital Solutions" style="display:flex;align-items:center;justify-content:center;gap:6px;opacity:.4;font-size:11px;text-decoration:none;color:inherit;">
+                    <span>Progettato e Sviluppato da</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" height="18">
+                        <defs>
+                            <linearGradient id="emcG" x1="0" y1="0" x2="120" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#7b8fa3"/>
+                                <stop offset="45%" stop-color="#9bb0c4"/>
+                                <stop offset="100%" stop-color="#e8eaed"/>
+                            </linearGradient>
+                            <linearGradient id="emcIG" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#7b8fa3"/>
+                                <stop offset="100%" stop-color="#9bb0c4"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M4,4 H24 L32,8 L24,12 H4 A4,4 0 0,1 4,4Z" fill="url(#emcIG)"/>
+                        <path d="M4,15 H20 L28,19 L20,23 H4 A4,4 0 0,1 4,15Z" fill="url(#emcIG)" opacity=".85"/>
+                        <path d="M4,26 H24 L32,30 L24,34 H4 A4,4 0 0,1 4,26Z" fill="url(#emcIG)"/>
+                        <text x="46" y="27" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="20" font-weight="700" fill="url(#emcG)" letter-spacing="3">EMC</text>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <span class="slide-number">09 / 09</span>
+    </section>
+
+    <script>
+        (function(){
+            var els=document.querySelectorAll('.fade-in');
+            if('IntersectionObserver' in window){
+                var obs=new IntersectionObserver(function(entries){
+                    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+                },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+                els.forEach(function(el){obs.observe(el);});
+            } else { els.forEach(function(el){el.classList.add('visible');}); }
+        })();
+        (function(){
+            var slides=document.querySelectorAll('.slide'), dots=document.querySelectorAll('.nav-dot');
+            dots.forEach(function(d){ d.addEventListener('click',function(){ slides[parseInt(this.getAttribute('data-slide'))].scrollIntoView({behavior:'smooth'}); }); });
+            if('IntersectionObserver' in window){
+                var obs=new IntersectionObserver(function(entries){
+                    entries.forEach(function(e){ if(e.isIntersecting){ var i=parseInt(e.target.id.replace('slide-','')); dots.forEach(function(d){d.classList.remove('active');}); if(dots[i]) dots[i].classList.add('active'); } });
+                },{threshold:.5});
+                slides.forEach(function(s){obs.observe(s);});
+            }
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Piano Editoriale Social &mdash; Fratelli Di Rosa | Agenzia Funebre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & VARIABLES ========== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-deep: #0a0e15;
+            --bg-primary: #141821;
+            --bg-card: #1a1f2e;
+            --bg-card-hover: #212739;
+            --accent: #7b8fa3;
+            --accent-light: #9bb0c4;
+            --accent-bright: #c5d5e4;
+            --text-primary: #e8eaed;
+            --text-light: #c0c4cc;
+            --text-muted: #8a919c;
+            --border-subtle: rgba(155, 176, 196, 0.12);
+            --border-accent: rgba(123, 143, 163, 0.25);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 30px rgba(123, 143, 163, 0.08);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+
+            /* Category colors */
+            --cat-servizi: #5b9bd5;
+            --cat-servizi-bg: rgba(91, 155, 213, 0.12);
+            --cat-struttura: #70ad47;
+            --cat-struttura-bg: rgba(112, 173, 71, 0.12);
+            --cat-fiori: #c77dba;
+            --cat-fiori-bg: rgba(199, 125, 186, 0.12);
+            --cat-team: #ed7d31;
+            --cat-team-bg: rgba(237, 125, 49, 0.12);
+            --cat-commemorazione: #a0a0c0;
+            --cat-commemorazione-bg: rgba(160, 160, 192, 0.12);
+            --cat-festivita: #ffc000;
+            --cat-festivita-bg: rgba(255, 192, 0, 0.12);
+            --cat-recensione: #44c4a1;
+            --cat-recensione-bg: rgba(68, 196, 161, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            overflow-x: hidden;
+        }
+
+        /* ========== SCROLL-SNAP SLIDES ========== */
+        .slide {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-inner {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ========== NAVIGATION DOTS ========== */
+        .nav-dots {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(155, 176, 196, 0.2);
+            border: 2px solid rgba(155, 176, 196, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot:hover {
+            background: rgba(155, 176, 196, 0.4);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            background: var(--accent-light);
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 8px rgba(155, 176, 196, 0.4);
+        }
+
+        .nav-dot .tooltip {
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .nav-dot:hover .tooltip {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-dots {
+                right: 10px;
+                gap: 10px;
+            }
+            .nav-dot {
+                width: 8px;
+                height: 8px;
+            }
+            .nav-dot .tooltip {
+                display: none;
+            }
+        }
+
+        /* ========== FADE-IN ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+        .fade-in-delay-5 { transition-delay: 0.5s; }
+        .fade-in-delay-6 { transition-delay: 0.6s; }
+        .fade-in-delay-7 { transition-delay: 0.7s; }
+        .fade-in-delay-8 { transition-delay: 0.8s; }
+
+        /* ========== SLIDE 1: COVER ========== */
+        .slide-cover {
+            background: linear-gradient(160deg, var(--bg-deep) 0%, #0f1520 40%, #151c2a 70%, #1a2235 100%);
+        }
+
+        .slide-cover::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(123, 143, 163, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .slide-cover::after {
+            content: '';
+            position: absolute;
+            bottom: -25%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(155, 176, 196, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cover-content {
+            text-align: center;
+        }
+
+        .cover-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(123, 143, 163, 0.15), rgba(155, 176, 196, 0.08));
+            border: 1px solid var(--border-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cover-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--accent-light);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .cover-label {
+            display: inline-block;
+            padding: 6px 20px;
+            background: rgba(123, 143, 163, 0.1);
+            border: 1px solid var(--border-accent);
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 28px;
+        }
+
+        .cover-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .cover-subtitle {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 400;
+            color: var(--accent-light);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .cover-location {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .cover-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .cover-meta-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(123, 143, 163, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .cover-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0 auto 20px;
+        }
+
+        .cover-emc {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* ========== SLIDE 2: LINEE GUIDA ========== */
+        .slide-guidelines {
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            margin-bottom: 36px;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--bg-deep);
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(26px, 3.5vw, 36px);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .guideline-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border-subtle);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .guideline-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .guideline-card h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent-bright);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .guideline-card p,
+        .guideline-card ul {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .guideline-card ul {
+            list-style: none;
+        }
+
+        .guideline-card ul li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+        }
+
+        .guideline-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .objective-highlight {
+            background: linear-gradient(135deg, rgba(123, 143, 163, 0.08), rgba(155, 176, 196, 0.04));
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .objective-highlight .quote {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--accent-bright);
+            margin-bottom: 8px;
+        }
+
+        .objective-highlight .quote-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .brand-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .brand-tag {
+            padding: 4px 14px;
+            background: rgba(123, 143, 163, 0.1);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        /* ========== SLIDE 3: CATEGORIE ========== */
+        .slide-categories {
+            background: var(--bg-deep);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .category-card[data-cat="servizi"]::before { background: var(--cat-servizi); }
+        .category-card[data-cat="struttura"]::before { background: var(--cat-struttura); }
+        .category-card[data-cat="fiori"]::before { background: var(--cat-fiori); }
+        .category-card[data-cat="team"]::before { background: var(--cat-team); }
+        .category-card[data-cat="commemorazione"]::before { background: var(--cat-commemorazione); }
+        .category-card[data-cat="festivita"]::before { background: var(--cat-festivita); }
+        .category-card[data-cat="recensione"]::before { background: var(--cat-recensione); }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .category-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .category-freq {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .freq-servizi { background: var(--cat-servizi-bg); color: var(--cat-servizi); }
+        .freq-struttura { background: var(--cat-struttura-bg); color: var(--cat-struttura); }
+        .freq-fiori { background: var(--cat-fiori-bg); color: var(--cat-fiori); }
+        .freq-team { background: var(--cat-team-bg); color: var(--cat-team); }
+        .freq-commemorazione { background: var(--cat-commemorazione-bg); color: var(--cat-commemorazione); }
+        .freq-festivita { background: var(--cat-festivita-bg); color: var(--cat-festivita); }
+        .freq-recensione { background: var(--cat-recensione-bg); color: var(--cat-recensione); }
+
+        .category-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .frequency-summary {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            margin-top: 24px;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .freq-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .freq-stat-number {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-bright);
+            line-height: 1;
+        }
+
+        .freq-stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ========== SLIDE 4: CALENDARIO ========== */
+        .slide-calendar {
+            background: var(--bg-primary);
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .calendar-weeks {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .week-block {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, rgba(123, 143, 163, 0.08), rgba(155, 176, 196, 0.04));
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .week-label {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent-bright);
+        }
+
+        .week-dates {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .week-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1px;
+            background: var(--border-subtle);
+        }
+
+        @media (max-width: 860px) {
+            .week-posts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .post-entry {
+            background: var(--bg-card);
+            padding: 20px 24px;
+            display: flex;
+            gap: 18px;
+            transition: background 0.2s ease;
+        }
+
+        .post-entry:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .post-date {
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 52px;
+        }
+
+        .post-day-name {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .post-day-num {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-bright);
+            line-height: 1.1;
+        }
+
+        .post-month {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .post-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .post-top-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .badge-servizi { background: var(--cat-servizi-bg); color: var(--cat-servizi); }
+        .badge-struttura { background: var(--cat-struttura-bg); color: var(--cat-struttura); }
+        .badge-fiori { background: var(--cat-fiori-bg); color: var(--cat-fiori); }
+        .badge-team { background: var(--cat-team-bg); color: var(--cat-team); }
+        .badge-commemorazione { background: var(--cat-commemorazione-bg); color: var(--cat-commemorazione); }
+        .badge-festivita { background: var(--cat-festivita-bg); color: var(--cat-festivita); }
+        .badge-recensione { background: var(--cat-recensione-bg); color: var(--cat-recensione); }
+
+        .platform-badges {
+            display: flex;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .platform-badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .platform-fb {
+            background: rgba(66, 103, 178, 0.15);
+            color: #7b9bd4;
+        }
+
+        .platform-ig {
+            background: rgba(193, 53, 132, 0.15);
+            color: #d17bb4;
+        }
+
+        .post-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .post-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ========== SLIDE 5: SPECIFICHE ========== */
+        .slide-specs {
+            background: var(--bg-deep);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .spec-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .spec-card h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent-bright);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spec-card h3 .spec-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(123, 143, 163, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .spec-list {
+            list-style: none;
+        }
+
+        .spec-list li {
+            padding: 6px 0 6px 20px;
+            position: relative;
+            font-size: 13.5px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .spec-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .spec-list li strong {
+            color: var(--text-primary);
+        }
+
+        .hashtag-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .hashtag {
+            padding: 3px 10px;
+            background: rgba(123, 143, 163, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-light);
+            white-space: nowrap;
+        }
+
+        /* ========== SLIDE 6: PROSSIMI PASSI ========== */
+        .slide-next {
+            background: var(--bg-primary);
+        }
+
+        .steps-timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+
+        .steps-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), rgba(123, 143, 163, 0.15));
+        }
+
+        .step-item {
+            position: relative;
+            padding-bottom: 28px;
+        }
+
+        .step-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .step-dot {
+            position: absolute;
+            left: -33px;
+            top: 2px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+
+        .step-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .contacts-box {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--border-accent);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contacts-box h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--accent-bright);
+            margin-bottom: 20px;
+        }
+
+        .contacts-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .contact-item a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-bright);
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(123, 143, 163, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* ========== FOOTER ========== */
+        .doc-footer {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .doc-footer .confidential {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-style: italic;
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 16px;
+            }
+
+            .cover-meta {
+                gap: 16px;
+            }
+
+            .guidelines-grid,
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .frequency-summary {
+                gap: 20px;
+            }
+
+            .week-posts {
+                grid-template-columns: 1fr;
+            }
+
+            .post-entry {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .post-date {
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .post-day-num {
+                font-size: 22px;
+            }
+
+            .contacts-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* ========== PRINT ========== */
+        @media print {
+            html { scroll-snap-type: none; }
+            .slide { min-height: auto; page-break-after: always; padding: 30px 20px; }
+            .nav-dots { display: none; }
+            .fade-in { opacity: 1; transform: none; }
+            body { background: white; color: #222; }
+            .slide-cover, .slide-guidelines, .slide-categories, .slide-calendar, .slide-specs, .slide-next {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION DOTS ========== -->
+    <nav class="nav-dots" id="navDots">
+        <div class="nav-dot active" data-slide="0">
+            <span class="tooltip">Copertina</span>
+        </div>
+        <div class="nav-dot" data-slide="1">
+            <span class="tooltip">Linee Guida</span>
+        </div>
+        <div class="nav-dot" data-slide="2">
+            <span class="tooltip">Categorie</span>
+        </div>
+        <div class="nav-dot" data-slide="3">
+            <span class="tooltip">Calendario</span>
+        </div>
+        <div class="nav-dot" data-slide="4">
+            <span class="tooltip">Specifiche</span>
+        </div>
+        <div class="nav-dot" data-slide="5">
+            <span class="tooltip">Prossimi Passi</span>
+        </div>
+    </nav>
+
+    <!-- ========== SLIDE 1: COVER ========== -->
+    <section class="slide slide-cover" id="slide-0">
+        <div class="slide-inner cover-content">
+            <div class="fade-in">
+                <div class="cover-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" fill="none"/>
+                        <path d="M8 12h8M12 8v8" stroke="currentColor" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="fade-in fade-in-delay-1">
+                <div class="cover-label">Piano Editoriale Social Media</div>
+            </div>
+            <h1 class="fade-in fade-in-delay-2 cover-title">Fratelli Di Rosa</h1>
+            <p class="fade-in fade-in-delay-3 cover-subtitle">Agenzia Funebre</p>
+            <p class="fade-in fade-in-delay-4 cover-location">Via Olimpica 18 &mdash; Ravanusa (AG) &mdash; Sicilia</p>
+            <div class="fade-in fade-in-delay-5 cover-meta">
+                <div class="cover-meta-item">
+                    <div class="cover-meta-icon">&#128197;</div>
+                    <span>Maggio 2026</span>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-icon">&#128241;</div>
+                    <span>Facebook + Instagram</span>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-icon">&#128196;</div>
+                    <span>12 post / mese</span>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-icon">&#128101;</div>
+                    <span>Giuseppe &amp; Gaspare</span>
+                </div>
+            </div>
+            <div class="fade-in fade-in-delay-6 cover-divider"></div>
+            <p class="fade-in fade-in-delay-7 cover-emc">Redatto da EMC Digital Solutions</p>
+        </div>
+    </section>
+
+    <!-- ========== SLIDE 2: LINEE GUIDA ========== -->
+    <section class="slide slide-guidelines" id="slide-1">
+        <div class="slide-inner">
+            <div class="section-header fade-in">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Linee Guida Comunicazione</h2>
+                <p class="section-subtitle">Strategia e tono di voce basati sul questionario</p>
+            </div>
+
+            <div class="guidelines-grid">
+                <div class="guideline-card fade-in fade-in-delay-1">
+                    <h3>Tono di Voce</h3>
+                    <ul>
+                        <li><strong>Diretto e pratico,</strong> ma sempre rispettoso</li>
+                        <li>Dare del <strong>&ldquo;tu&rdquo;</strong> ai follower (informale)</li>
+                        <li>Dialetto siciliano: solo se usato in modo simpatico e leggero</li>
+                        <li>Mai freddo o distaccato &mdash; vicini alle persone</li>
+                    </ul>
+                </div>
+                <div class="guideline-card fade-in fade-in-delay-2">
+                    <h3>Valori del Brand</h3>
+                    <div class="brand-tags">
+                        <span class="brand-tag">Professionale</span>
+                        <span class="brand-tag">Affidabile</span>
+                        <span class="brand-tag">Accessibile</span>
+                        <span class="brand-tag">Attenta ai dettagli</span>
+                        <span class="brand-tag">Vicina alle famiglie</span>
+                    </div>
+                </div>
+                <div class="guideline-card fade-in fade-in-delay-3">
+                    <h3>Regole Editoriali</h3>
+                    <ul>
+                        <li><strong>MAI</strong> pubblicare prezzi o cifre</li>
+                        <li>Ogni post va <strong>approvato</strong> prima della pubblicazione</li>
+                        <li>Commenti gestiti da EMC Digital Solutions</li>
+                        <li>Messaggi privati gestiti direttamente da Giuseppe</li>
+                    </ul>
+                </div>
+                <div class="guideline-card fade-in fade-in-delay-4">
+                    <h3>Identit&agrave;</h3>
+                    <ul>
+                        <li>Attivi dal <strong>2018</strong>, il padre nel settore dal <strong>1999</strong></li>
+                        <li>Due fratelli: <strong>Giuseppe e Gaspare Di Rosa</strong></li>
+                        <li><strong>Laboratorio floreale</strong> interno</li>
+                        <li>Servizio <strong>H24</strong>, 7 giorni su 7</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="objective-highlight fade-in fade-in-delay-5">
+                <div class="quote">&ldquo;Che balzi subito in mente alla gente&rdquo;</div>
+                <div class="quote-desc">Obiettivo principale: essere il primo nome a cui si pensa nel momento del bisogno</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SLIDE 3: CATEGORIE ========== -->
+    <section class="slide slide-categories" id="slide-2">
+        <div class="slide-inner">
+            <div class="section-header fade-in">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Categorie Contenuto</h2>
+                <p class="section-subtitle">12 post al mese &mdash; 3 pubblicazioni a settimana (Luned&igrave;, Mercoled&igrave; e Venerd&igrave;)</p>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card fade-in fade-in-delay-1" data-cat="servizi">
+                    <div class="category-header">
+                        <span class="category-name">Servizi Offerti</span>
+                        <span class="category-freq freq-servizi">3/mese</span>
+                    </div>
+                    <p class="category-desc">Presentazione professionale: trasporto, vestizione, camera ardente, disbrigo pratiche, cremazioni, trasporti nazionali ed esteri</p>
+                </div>
+                <div class="category-card fade-in fade-in-delay-2" data-cat="struttura">
+                    <div class="category-header">
+                        <span class="category-name">Struttura e Ambienti</span>
+                        <span class="category-freq freq-struttura">1-2/mese</span>
+                    </div>
+                    <p class="category-desc">Foto della sede di Via Olimpica 18, sala del commiato, mezzi funebri. Mostrare professionalit&agrave; e cura degli spazi</p>
+                </div>
+                <div class="category-card fade-in fade-in-delay-3" data-cat="fiori">
+                    <div class="category-header">
+                        <span class="category-name">Composizioni Floreali</span>
+                        <span class="category-freq freq-fiori">2/mese</span>
+                    </div>
+                    <p class="category-desc">Creazioni dal laboratorio floreale interno. Corone, cuscini, composizioni personalizzate &mdash; un punto di forza distintivo</p>
+                </div>
+                <div class="category-card fade-in fade-in-delay-4" data-cat="team">
+                    <div class="category-header">
+                        <span class="category-name">Dietro le Quinte / Il Team</span>
+                        <span class="category-freq freq-team">1-2/mese</span>
+                    </div>
+                    <p class="category-desc">Giuseppe e Gaspare al lavoro, il team, preparativi quotidiani. Umanizzare il brand e costruire fiducia</p>
+                </div>
+                <div class="category-card fade-in fade-in-delay-5" data-cat="commemorazione">
+                    <div class="category-header">
+                        <span class="category-name">Frasi di Conforto</span>
+                        <span class="category-freq freq-commemorazione">2/mese</span>
+                    </div>
+                    <p class="category-desc">Pensieri rispettosi, commemorazioni, frasi di conforto con grafica elegante. Contenuto empatico e di vicinanza</p>
+                </div>
+                <div class="category-card fade-in fade-in-delay-6" data-cat="festivita">
+                    <div class="category-header">
+                        <span class="category-name">Festivit&agrave; e Ricorrenze</span>
+                        <span class="category-freq freq-festivita">1/mese</span>
+                    </div>
+                    <p class="category-desc">2 Novembre, San Vito, Sant&rsquo;Antonio, San Giuseppe (19 marzo) e altre ricorrenze locali e religiose</p>
+                </div>
+                <div class="category-card fade-in fade-in-delay-7" data-cat="recensione">
+                    <div class="category-header">
+                        <span class="category-name">Recensioni e Testimonianze</span>
+                        <span class="category-freq freq-recensione">1/mese*</span>
+                    </div>
+                    <p class="category-desc">Feedback delle famiglie assistite (quando disponibili e con autorizzazione). Social proof autentica</p>
+                </div>
+            </div>
+
+            <div class="frequency-summary fade-in fade-in-delay-8">
+                <div class="freq-stat">
+                    <div class="freq-stat-number">12</div>
+                    <div class="freq-stat-label">Post / Mese</div>
+                </div>
+                <div class="freq-stat">
+                    <div class="freq-stat-number">3</div>
+                    <div class="freq-stat-label">Post / Settimana</div>
+                </div>
+                <div class="freq-stat">
+                    <div class="freq-stat-number">2</div>
+                    <div class="freq-stat-label">Piattaforme</div>
+                </div>
+                <div class="freq-stat">
+                    <div class="freq-stat-number">7</div>
+                    <div class="freq-stat-label">Categorie</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SLIDE 4: CALENDARIO MAGGIO 2026 ========== -->
+    <section class="slide slide-calendar" id="slide-3">
+        <div class="slide-inner">
+            <div class="section-header fade-in">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Calendario Maggio 2026</h2>
+                <p class="section-subtitle">12 post programmati &mdash; pubblicazione Luned&igrave;, Mercoled&igrave; e Venerd&igrave; ore 10:00</p>
+            </div>
+
+            <div class="calendar-weeks">
+                <!-- Week 1 -->
+                <div class="week-block fade-in fade-in-delay-1">
+                    <div class="week-header">
+                        <span class="week-label">Settimana 1</span>
+                        <span class="week-dates">5 &ndash; 9 Maggio</span>
+                    </div>
+                    <div class="week-posts">
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Luned&igrave;</div>
+                                <div class="post-day-num">5</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-servizi">Servizi</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;Servizio H24: sempre al vostro fianco&rdquo;</div>
+                                <div class="post-desc">Post che presenta la disponibilit&agrave; 24 ore su 24, 7 giorni su 7. Numeri di telefono in evidenza, tono rassicurante. Focus sulla reperibilit&agrave; in qualsiasi momento del bisogno.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Mercoled&igrave;</div>
+                                <div class="post-day-num">7</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-commemorazione">Commemorazione</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">Frase di conforto con grafica elegante</div>
+                                <div class="post-desc">Pensiero rispettoso e delicato su sfondo grafico brandizzato. Toni pacati, tipografia curata. Contenuto empatico che genera condivisioni e vicinanza.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Venerd&igrave;</div>
+                                <div class="post-day-num">9</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-struttura">Struttura</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;La nostra sede di Via Olimpica 18&rdquo;</div>
+                                <div class="post-desc">Tour fotografico della struttura: ingresso, sala del commiato, ambienti curati. Mostrare la professionalit&agrave; e l&rsquo;attenzione ai dettagli degli spazi.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="week-block fade-in fade-in-delay-2">
+                    <div class="week-header">
+                        <span class="week-label">Settimana 2</span>
+                        <span class="week-dates">12 &ndash; 16 Maggio</span>
+                    </div>
+                    <div class="week-posts">
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Luned&igrave;</div>
+                                <div class="post-day-num">12</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-fiori">Fiori</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;Dal nostro laboratorio floreale&rdquo;</div>
+                                <div class="post-desc">Composizioni floreali realizzate internamente: corone, cuscini, addobbi personalizzati. Foto ravvicinate dei dettagli, luce naturale. Evidenziare la cura artigianale.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Mercoled&igrave;</div>
+                                <div class="post-day-num">14</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-team">Team</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;Giuseppe e Gaspare: una tradizione di famiglia&rdquo;</div>
+                                <div class="post-desc">Storytelling familiare: il padre nel settore dal 1999, i fratelli proseguono dal 2018. Foto dei due fratelli al lavoro. Costruire il legame umano con la community.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Venerd&igrave;</div>
+                                <div class="post-day-num">16</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-servizi">Servizi</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;Assistenza completa: dalle pratiche alla cerimonia&rdquo;</div>
+                                <div class="post-desc">Focus sul disbrigo burocratico e l&rsquo;accompagnamento completo. Pratiche comunali, certificati, coordinamento con parrocchie, trasporti.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 3 -->
+                <div class="week-block fade-in fade-in-delay-3">
+                    <div class="week-header">
+                        <span class="week-label">Settimana 3</span>
+                        <span class="week-dates">19 &ndash; 23 Maggio</span>
+                    </div>
+                    <div class="week-posts">
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Luned&igrave;</div>
+                                <div class="post-day-num">19</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-commemorazione">Commemorazione</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">Pensiero di vicinanza alle famiglie</div>
+                                <div class="post-desc">Seconda frase di conforto del mese. Grafica diversa dalla prima, stesso tono empatico. Variare lo stile visivo per mantenere freschezza nei contenuti.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Mercoled&igrave;</div>
+                                <div class="post-day-num">21</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-fiori">Fiori</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">Composizione floreale personalizzata</div>
+                                <div class="post-desc">Seconda composizione del mese: variare tipologia (cuscino, corona, bouquet). Foto su sfondo neutro o ambientata. Mostrare la variet&agrave; del laboratorio interno.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Venerd&igrave;</div>
+                                <div class="post-day-num">23</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-servizi">Servizi</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;Trasporti nazionali e internazionali&rdquo;</div>
+                                <div class="post-desc">Presentazione del servizio di rimpatrio salme con mezzi propri. Un servizio che pochi offrono e che rappresenta un forte punto di differenziazione.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 4 -->
+                <div class="week-block fade-in fade-in-delay-4">
+                    <div class="week-header">
+                        <span class="week-label">Settimana 4</span>
+                        <span class="week-dates">26 &ndash; 30 Maggio</span>
+                    </div>
+                    <div class="week-posts">
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Luned&igrave;</div>
+                                <div class="post-day-num">26</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-struttura">Struttura</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;I nostri mezzi: al servizio delle famiglie&rdquo;</div>
+                                <div class="post-desc">Foto dei veicoli funebri, curati e professionali. Mostrare l&rsquo;attrezzatura all&rsquo;avanguardia per la conservazione e il trasporto.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Mercoled&igrave;</div>
+                                <div class="post-day-num">28</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-team">Team</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">&ldquo;Certificati e qualificati: la vostra garanzia&rdquo;</div>
+                                <div class="post-desc">Focus sulle certificazioni professionali: Responsabile conduzione attivit&agrave; funeraria e Addetto necroforo. Costruire autorit&agrave; e fiducia nel brand.</div>
+                            </div>
+                        </div>
+                        <div class="post-entry">
+                            <div class="post-date">
+                                <div class="post-day-name">Venerd&igrave;</div>
+                                <div class="post-day-num">30</div>
+                                <div class="post-month">Maggio</div>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-top-row">
+                                    <span class="badge badge-recensione">Recensione</span>
+                                    <div class="platform-badges">
+                                        <span class="platform-badge platform-fb">FB</span>
+                                        <span class="platform-badge platform-ig">IG</span>
+                                    </div>
+                                </div>
+                                <div class="post-title">Testimonianza di una famiglia assistita</div>
+                                <div class="post-desc">Feedback autentico con autorizzazione della famiglia. Grafica brandizzata con citazione. Costruire fiducia attraverso la voce di chi ha vissuto il servizio.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SLIDE 5: SPECIFICHE TECNICHE ========== -->
+    <section class="slide slide-specs" id="slide-4">
+        <div class="slide-inner">
+            <div class="section-header fade-in">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Formato e Specifiche Tecniche</h2>
+                <p class="section-subtitle">Standard di pubblicazione per Facebook e Instagram</p>
+            </div>
+
+            <div class="specs-grid">
+                <div class="spec-card fade-in fade-in-delay-1">
+                    <h3><span class="spec-icon">&#128444;</span> Formato Immagini</h3>
+                    <ul class="spec-list">
+                        <li><strong>Feed:</strong> 1080 &times; 1080 px (quadrato)</li>
+                        <li><strong>Stories:</strong> 1080 &times; 1920 px (verticale 9:16)</li>
+                        <li>Risoluzione minima 72 dpi, colori RGB</li>
+                        <li>Logo Fratelli Di Rosa sempre visibile</li>
+                    </ul>
+                </div>
+                <div class="spec-card fade-in fade-in-delay-2">
+                    <h3><span class="spec-icon">&#128241;</span> Piattaforme</h3>
+                    <ul class="spec-list">
+                        <li><strong>Facebook</strong> &mdash; Pagina aziendale</li>
+                        <li><strong>Instagram</strong> &mdash; Profilo business</li>
+                        <li>Stessi contenuti adattati per ciascuna piattaforma</li>
+                        <li>Stories: 2-3 a settimana (behind the scenes, tips)</li>
+                    </ul>
+                </div>
+                <div class="spec-card fade-in fade-in-delay-3">
+                    <h3><span class="spec-icon">&#128336;</span> Orari Pubblicazione</h3>
+                    <ul class="spec-list">
+                        <li><strong>Giorni:</strong> Luned&igrave; e Gioved&igrave;</li>
+                        <li><strong>Orario:</strong> 10:00 (proposta iniziale, da testare)</li>
+                        <li>Monitorare le metriche per ottimizzare gli orari</li>
+                        <li>Adattare in base alla risposta del pubblico</li>
+                    </ul>
+                </div>
+                <div class="spec-card fade-in fade-in-delay-4">
+                    <h3><span class="spec-icon">&#128221;</span> Caption e CTA (Testo e Invito all&rsquo;Azione)</h3>
+                    <ul class="spec-list">
+                        <li><strong>Lunghezza:</strong> max 2-3 frasi per post</li>
+                        <li><strong>CTA:</strong> &ldquo;Contattaci al 328 968 5570&rdquo;</li>
+                        <li><strong>Link al sito:</strong> ogni post include il rimando al sito web ufficiale</li>
+                        <li>Tono diretto, rispettoso, informale (dare del &ldquo;tu&rdquo;)</li>
+                        <li>Mai menzionare prezzi o cifre</li>
+                    </ul>
+                </div>
+                <div class="spec-card fade-in fade-in-delay-5">
+                    <h3><span class="spec-icon">#</span> Strategia Hashtag</h3>
+                    <ul class="spec-list">
+                        <li><strong>Instagram:</strong> max 15 hashtag per post</li>
+                        <li><strong>Facebook:</strong> 3-5 hashtag per post</li>
+                        <li>Mix locale + settore (vedi sotto)</li>
+                        <li>Alternare per evitare ripetizioni</li>
+                    </ul>
+                    <div class="hashtag-preview">
+                        <span class="hashtag">#Ravanusa</span>
+                        <span class="hashtag">#AgenziaFunebre</span>
+                        <span class="hashtag">#Agrigento</span>
+                        <span class="hashtag">#OnoranzeFunebri</span>
+                        <span class="hashtag">#ServiziFunebri</span>
+                        <span class="hashtag">#FratelliDiRosa</span>
+                        <span class="hashtag">#FioriFunebri</span>
+                        <span class="hashtag">#Sicilia</span>
+                    </div>
+                </div>
+                <div class="spec-card fade-in fade-in-delay-6">
+                    <h3><span class="spec-icon">&#127909;</span> Stories</h3>
+                    <ul class="spec-list">
+                        <li><strong>Frequenza:</strong> 2-3 a settimana</li>
+                        <li>Behind the scenes e preparativi</li>
+                        <li>Quick tips e informazioni utili</li>
+                        <li>Formato verticale 1080 &times; 1920 px</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SLIDE 6: PROSSIMI PASSI ========== -->
+    <section class="slide slide-next" id="slide-5">
+        <div class="slide-inner">
+            <div class="section-header fade-in">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Prossimi Passi</h2>
+                <p class="section-subtitle">Fasi operative per l&rsquo;avvio della gestione social</p>
+            </div>
+
+            <div class="steps-timeline fade-in fade-in-delay-1">
+                <div class="step-item">
+                    <div class="step-dot">1</div>
+                    <div class="step-title">Ricezione Materiale Fotografico</div>
+                    <div class="step-desc">Il cliente invia via WhatsApp foto ad alta risoluzione della struttura, dei mezzi, del team e delle composizioni floreali. Noi ci occupiamo di brandizzarle, ritoccarle e adattarle ai template grafici.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-dot">2</div>
+                    <div class="step-title">Creazione Grafiche Base e Template</div>
+                    <div class="step-desc">Sviluppo dei template brandizzati per ogni categoria di contenuto: servizi, fiori, commemorazioni, recensioni. Palette coerente con l&rsquo;identit&agrave; visiva.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-dot">3</div>
+                    <div class="step-title">Approvazione Primi Contenuti</div>
+                    <div class="step-desc">Invio dei primi post completi (grafica + caption) via WhatsApp per approvazione da parte di Giuseppe. Eventuali correzioni e via libera alla pubblicazione.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-dot">4</div>
+                    <div class="step-title">Pubblicazione e Monitoraggio</div>
+                    <div class="step-desc">Avvio delle pubblicazioni programmate. Monitoraggio costante delle metriche (engagement, reach, crescita follower). Report mensile con risultati e ottimizzazioni.</div>
+                </div>
+            </div>
+
+            <div class="contacts-box fade-in fade-in-delay-3">
+                <h3>EMC Digital Solutions</h3>
+                <div class="contacts-list">
+                    <div class="contact-item">
+                        <div class="contact-icon">&#9993;</div>
+                        <a href="mailto:emcdigitalsolution@gmail.com">emcdigitalsolution@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">&#127760;</div>
+                        <a href="https://www.emcdigitalsolutions.it" target="_blank" rel="noopener">www.emcdigitalsolutions.it</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">&#128197;</div>
+                        <a href="https://calendly.com/emcdigitalsolution/30min" target="_blank" rel="noopener">Prenota una call</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="doc-footer fade-in fade-in-delay-4">
+                <p class="confidential">Documento riservato &mdash; Ad uso esclusivo del cliente</p>
+                <a href="https://www.emcdigitalsolutions.it" target="_blank" rel="noopener" title="Progettato e Sviluppato da EMC Digital Solutions" style="display:flex;align-items:center;justify-content:center;gap:6px;opacity:0.4;font-size:11px;text-decoration:none;color:inherit;">
+                    <span>Progettato e Sviluppato da</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" height="18">
+                        <defs>
+                            <linearGradient id="emcG" x1="0" y1="0" x2="120" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#7b8fa3"/>
+                                <stop offset="45%" stop-color="#9bb0c4"/>
+                                <stop offset="100%" stop-color="#e8eaed"/>
+                            </linearGradient>
+                            <linearGradient id="emcIG" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#7b8fa3"/>
+                                <stop offset="100%" stop-color="#9bb0c4"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M4,4 H24 L32,8 L24,12 H4 A4,4 0 0,1 4,4Z" fill="url(#emcIG)"/>
+                        <path d="M4,15 H20 L28,19 L20,23 H4 A4,4 0 0,1 4,15Z" fill="url(#emcIG)" opacity="0.85"/>
+                        <path d="M4,26 H24 L32,30 L24,34 H4 A4,4 0 0,1 4,26Z" fill="url(#emcIG)"/>
+                        <text x="46" y="27" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="20" font-weight="700" fill="url(#emcG)" letter-spacing="3">EMC</text>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* ========== INTERSECTION OBSERVER — FADE-IN ========== */
+        (function() {
+            var fadeElements = document.querySelectorAll('.fade-in');
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            fadeElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        })();
+
+        /* ========== NAVIGATION DOTS ========== */
+        (function() {
+            var slides = document.querySelectorAll('.slide');
+            var dots = document.querySelectorAll('.nav-dot');
+
+            // Click on dot to scroll to slide
+            dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    var index = parseInt(this.getAttribute('data-slide'));
+                    slides[index].scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Update active dot on scroll
+            var slideObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var slideId = entry.target.id;
+                        var index = parseInt(slideId.replace('slide-', ''));
+                        dots.forEach(function(d) { d.classList.remove('active'); });
+                        dots[index].classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            slides.forEach(function(slide) {
+                slideObserver.observe(slide);
+            });
+        })();
+
+        /* ========== KEYBOARD NAVIGATION ========== */
+        (function() {
+            var slides = document.querySelectorAll('.slide');
+            var currentSlide = 0;
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                    e.preventDefault();
+                    if (currentSlide < slides.length - 1) {
+                        currentSlide++;
+                        slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                    e.preventDefault();
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+
+            // Keep currentSlide in sync with scroll
+            var syncObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        currentSlide = parseInt(entry.target.id.replace('slide-', ''));
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            slides.forEach(function(slide) {
+                syncObserver.observe(slide);
+            });
+        })();
+    </script>
+
+</body>
+</html>
