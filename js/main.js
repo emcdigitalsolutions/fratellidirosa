@@ -24,17 +24,20 @@
 
     var particlesContainer = document.getElementById('heroParticles');
     if (particlesContainer) {
-        var shapes = ['circle', 'cross', 'diamond'];
-        for (var i = 0; i < 25; i++) {
+        // Solo piccole croci fluttuanti, movimento lento e delicato
+        for (var i = 0; i < 18; i++) {
             var particle = document.createElement('div');
-            var shape = shapes[Math.floor(Math.random() * shapes.length)];
-            particle.classList.add('particle', 'particle--' + shape);
+            particle.classList.add('particle');
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.animationDuration = (6 + Math.random() * 6) + 's';
-            var size = 2 + Math.random() * 5;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
+            // Ritardo ampio per distribuzione naturale
+            particle.style.animationDelay = (Math.random() * 20) + 's';
+            // Durata 18-30s: molto piu lenta di prima (era 6-12s)
+            particle.style.animationDuration = (18 + Math.random() * 12) + 's';
+            // Piccole croci: 8-14px (proporzione croce latina: altezza > larghezza)
+            var width = 6 + Math.random() * 5;
+            var height = width * 1.6;
+            particle.style.width = width + 'px';
+            particle.style.height = height + 'px';
             particlesContainer.appendChild(particle);
         }
     }

@@ -304,25 +304,45 @@ button { font-family: inherit; cursor: pointer; }
 
 .particle {
     position: absolute;
-    top: -20px;
-    background: var(--accent-light);
-    opacity: .3;
+    top: -30px;
+    pointer-events: none;
+    opacity: 0;
     animation: particleFall linear infinite;
+    will-change: transform, opacity;
 }
 
-.particle--circle { border-radius: 50%; }
-.particle--diamond { transform: rotate(45deg); }
-.particle--cross {
-    background: transparent;
-    box-shadow: 0 0 0 1px var(--accent-light);
-    opacity: .2;
+.particle::before,
+.particle::after {
+    content: '';
+    position: absolute;
+    background: var(--accent-light);
+    border-radius: 1px;
+    box-shadow: 0 0 6px rgba(155, 176, 196, 0.35);
+}
+
+/* Barra verticale della croce */
+.particle::before {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1.5px;
+    transform: translateX(-50%);
+}
+
+/* Barra orizzontale della croce (piu corta, posizionata in alto come croce latina) */
+.particle::after {
+    top: 28%;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    transform: translateY(-50%);
 }
 
 @keyframes particleFall {
-    0% { transform: translateY(-20px); opacity: 0; }
-    10% { opacity: .35; }
-    90% { opacity: .2; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+    8% { opacity: .28; }
+    92% { opacity: .22; }
+    100% { transform: translateY(110vh) rotate(180deg); opacity: 0; }
 }
 
 .hero-container {
