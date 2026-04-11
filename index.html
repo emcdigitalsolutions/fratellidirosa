@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Agenzia Funebre Fratelli Di Rosa a Ravanusa. Servizi funebri completi, lavori cimiteriali, tanatoestetica, cremazione. Disponibili diurno e notturno.">
-    <meta name="keywords" content="agenzia funebre, Ravanusa, funerali, cremazione, lavori cimiteriali, tanatoestetica, camera ardente, Agrigento">
+    <meta name="description" content="Agenzia Funebre Fratelli Di Rosa a Ravanusa, attivi dal 2018 con esperienza familiare dal 1999. Servizi funebri completi, laboratorio floreale interno, lavori cimiteriali, tanatoestetica, cremazione. Servizio H24, 7 giorni su 7.">
+    <meta name="keywords" content="agenzia funebre, Ravanusa, funerali, cremazione, lavori cimiteriali, tanatoestetica, camera ardente, laboratorio floreale, H24, Agrigento, Giuseppe Gaspare Di Rosa">
     <meta name="author" content="Agenzia Funebre Fratelli Di Rosa">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0e15">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Fratelli Di Rosa - Agenzia Funebre">
-    <meta property="og:description" content="Ci prendiamo cura di ogni dettaglio per un addio rispettoso e dignitoso. Servizi funebri completi a Ravanusa. Disponibili diurno e notturno.">
+    <meta property="og:description" content="Ci prendiamo cura di ogni dettaglio per un addio rispettoso e dignitoso. Servizi funebri completi a Ravanusa con laboratorio floreale interno. Servizio H24, 7 giorni su 7.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="it_IT">
+    <meta property="og:image" content="images/giuseppegaspare.jpg">
 
     <title>Fratelli Di Rosa - Agenzia Funebre | Ravanusa (AG)</title>
 
@@ -21,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -34,6 +36,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <!-- ========== SCROLL PROGRESS ========== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- ========== HEADER ========== -->
     <header class="header" id="header">
@@ -51,6 +56,7 @@
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#chi-siamo">Chi Siamo</a></li>
                     <li><a href="#servizi">Servizi</a></li>
+                    <li><a href="#perche-sceglierci">Perch&eacute;</a></li>
                     <li><a href="#galleria">Galleria</a></li>
                     <li><a href="#contatti">Contatti</a></li>
                 </ul>
@@ -64,335 +70,482 @@
         </div>
     </header>
 
-    <!-- ========== HERO ========== -->
+    <!-- ========== HERO - SPLIT 55/45 ========== -->
     <section class="hero" id="hero">
         <div class="hero-particles" id="heroParticles"></div>
-        <div class="hero-content">
-            <h1>Fratelli Di Rosa</h1>
-            <p class="hero-subtitle">Agenzia Funebre</p>
-            <div class="hero-divider"></div>
-            <p class="hero-phrase">Ci prendiamo cura di ogni dettaglio per un addio rispettoso e dignitoso</p>
-            <div class="hero-actions">
-                <a href="#contatti" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i> Contattaci
-                </a>
-                <div class="hero-badge">
-                    <i class="fas fa-clock"></i> Servizio Diurno e Notturno
+        <div class="geo-bg">
+            <div class="geo-circle geo-1"></div>
+            <div class="geo-circle geo-2"></div>
+            <div class="geo-circle geo-3"></div>
+        </div>
+        <svg class="bg-cross" viewBox="0 0 120 180" aria-hidden="true">
+            <rect x="45" y="0" width="30" height="180"/>
+            <rect x="0" y="60" width="120" height="30"/>
+        </svg>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="fade-in stagger-1">
+                    <span class="hero-label">Agenzia Funebre &middot; Ravanusa</span>
                 </div>
-                <div class="hero-phones">
-                    <a href="tel:+393289685570">
-                        <span class="phone-name">Giuseppe</span>
-                        <i class="fas fa-phone"></i> 328 968 5570
-                    </a>
-                    <a href="tel:+393287480631">
-                        <span class="phone-name">Gaspare</span>
-                        <i class="fas fa-phone"></i> 328 748 0631
-                    </a>
+                <div class="fade-in stagger-2">
+                    <h1>Fratelli Di&nbsp;Rosa</h1>
+                </div>
+                <div class="fade-in stagger-3">
+                    <p class="hero-subtitle">Un ultimo saluto, con rispetto e dignit&agrave;</p>
+                </div>
+                <div class="fade-in stagger-4">
+                    <div class="hero-divider"></div>
+                </div>
+                <div class="fade-in stagger-5">
+                    <p class="hero-phrase">
+                        Ci prendiamo cura di ogni dettaglio per accompagnarvi nel momento del commiato,
+                        con la presenza discreta e professionale di due fratelli al servizio della vostra comunit&agrave;.
+                    </p>
+                </div>
+                <div class="fade-in stagger-6">
+                    <div class="hero-actions">
+                        <a href="#contatti" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Contattaci
+                        </a>
+                        <div class="hero-badge">
+                            <i class="fas fa-clock"></i> Servizio H24 &middot; 7 giorni su 7
+                        </div>
+                    </div>
+                    <div class="hero-phones">
+                        <a href="tel:+393289685570">
+                            <span class="phone-name">Giuseppe</span>
+                            <i class="fas fa-phone"></i> 328 968 5570
+                        </a>
+                        <a href="tel:+393287480631">
+                            <span class="phone-name">Gaspare</span>
+                            <i class="fas fa-phone"></i> 328 748 0631
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual fade-in-right stagger-3">
+                <div class="hero-photo-ring-2"></div>
+                <div class="hero-photo-ring"></div>
+                <div class="hero-photo-frame">
+                    <img src="images/giuseppegaspare.jpg" alt="Giuseppe e Gaspare Di Rosa - Agenzia Funebre Fratelli Di Rosa" loading="eager">
+                    <div class="hero-photo-badge">
+                        <div class="hero-photo-badge-label">Titolari</div>
+                        <div class="hero-photo-badge-name">Giuseppe &amp; Gaspare Di&nbsp;Rosa</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CHI SIAMO ========== -->
+    <!-- ========== CHI SIAMO - editoriale ========== -->
     <section class="section about" id="chi-siamo">
+        <span class="section-number" aria-hidden="true">01</span>
+        <svg class="bg-cross" viewBox="0 0 120 180" aria-hidden="true">
+            <rect x="45" y="0" width="30" height="180"/>
+            <rect x="0" y="60" width="120" height="30"/>
+        </svg>
+
         <div class="container">
             <div class="section-header fade-in">
-                <h2>Chi Siamo</h2>
-                <div class="section-line"></div>
-                <p>Un'impresa familiare al servizio della comunità</p>
+                <span class="section-label">Chi Siamo</span>
+                <h2>Un'impresa familiare <em>al servizio della comunit&agrave;</em></h2>
+                <p>Due fratelli, un'unica missione: accompagnare le famiglie con serieta, discrezione e competenza certificata.</p>
             </div>
-            <div class="about-content fade-in">
-                <div class="about-icon">
-                    <i class="fas fa-hands-holding-heart"></i>
+
+            <div class="about-layout">
+                <div class="about-text fade-in-left">
+                    <p>
+                        L'<strong>Agenzia Funebre Fratelli Di Rosa</strong> nasce nel <strong>2018</strong> dall'impegno
+                        e dalla dedizione di due fratelli, <strong>Giuseppe</strong> e <strong>Gaspare Di Rosa</strong>,
+                        che hanno fatto della cura e del rispetto per le famiglie la propria missione. Un'attivit&agrave;
+                        che affonda le radici nell'esperienza del padre, nel settore <strong>dal 1999</strong>: un'eredit&agrave;
+                        familiare fatta di competenza, rispetto e vicinanza alle famiglie del territorio.
+                    </p>
+                    <p>
+                        Operiamo a <strong>Ravanusa</strong> e in tutto il territorio provinciale con seriet&agrave;
+                        e competenza certificata. Grazie alle certificazioni di <strong>Responsabile conduzione attivit&agrave;
+                        funeraria</strong> e <strong>Addetto necroforo</strong>, garantiamo un servizio altamente qualificato
+                        e conforme a tutte le normative vigenti. Ci occupiamo di ogni aspetto, dal supporto burocratico
+                        all'organizzazione completa del rito funebre.
+                    </p>
+                    <p>
+                        Disponiamo inoltre di un <strong>laboratorio floreale interno</strong>, che ci permette di
+                        realizzare addobbi curati e personalizzati, e garantiamo un servizio <strong>H24, 7 giorni
+                        su 7</strong>, perch&eacute; le necessit&agrave; non attendono.
+                    </p>
                 </div>
-                <p>
-                    L'<strong>Agenzia Funebre Fratelli Di Rosa</strong> nasce dall'impegno e dalla dedizione
-                    di due fratelli, <strong>Giuseppe</strong> e <strong>Gaspare Di Rosa</strong>, che hanno fatto
-                    della cura e del rispetto per le famiglie la propria missione. Operiamo a Ravanusa
-                    e in tutto il territorio provinciale con serietà e competenza.
-                </p>
-                <p>
-                    Grazie alle certificazioni di <strong>Responsabile conduzione attività funeraria</strong>
-                    e <strong>Addetto necroforo</strong>, garantiamo un servizio altamente qualificato e conforme
-                    a tutte le normative vigenti. Ci occupiamo di ogni aspetto, dal supporto burocratico
-                    all'organizzazione completa del rito funebre, per permettervi di vivere il momento
-                    del commiato con serenità.
-                </p>
-                <p>
-                    Il nostro impegno quotidiano è quello di offrire un servizio completo, discreto
-                    e personalizzato, nel pieno rispetto della volontà e della memoria dei vostri cari.
-                </p>
-            </div>
-            <div class="about-values fade-in">
-                <div class="about-value">
-                    <i class="fas fa-medal"></i>
-                    <h4>Professionalità</h4>
-                    <p>Competenza certificata e attenzione a ogni dettaglio organizzativo</p>
-                </div>
-                <div class="about-value">
-                    <i class="fas fa-user-shield"></i>
-                    <h4>Discrezione</h4>
-                    <p>Riservatezza e rispetto in ogni fase del servizio</p>
-                </div>
-                <div class="about-value">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h4>Competenza</h4>
-                    <p>Personale qualificato con certificazioni professionali riconosciute</p>
-                </div>
+
+                <aside class="about-card fade-in-right">
+                    <div class="about-card-icon">
+                        <i class="fas fa-hands-holding-heart"></i>
+                    </div>
+                    <h3>Giuseppe &amp; Gaspare</h3>
+                    <p>Due fratelli, un'unica visione: un servizio umano e professionale in ogni momento.</p>
+
+                    <ul class="about-cert">
+                        <li>
+                            <i class="fas fa-calendar-check"></i>
+                            <span><strong>Attivi dal 2018</strong><br>Padre nel settore dal 1999</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-certificate"></i>
+                            <span><strong>Responsabile attivit&agrave; funeraria</strong><br>Certificazione abilitante</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-user-check"></i>
+                            <span><strong>Addetto necroforo</strong><br>Personale qualificato</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-seedling"></i>
+                            <span><strong>Laboratorio floreale interno</strong><br>Addobbi curati in casa</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-moon"></i>
+                            <span><strong>Servizio H24 &mdash; 7/7</strong><br>Sempre raggiungibili</span>
+                        </li>
+                    </ul>
+                </aside>
             </div>
         </div>
     </section>
 
-    <!-- ========== SERVIZI ========== -->
+    <!-- ========== SERVIZI - masonry asimmetrico ========== -->
     <section class="section services" id="servizi">
+        <span class="section-number" aria-hidden="true">02</span>
+        <svg class="bg-cross" viewBox="0 0 120 180" aria-hidden="true">
+            <rect x="45" y="0" width="30" height="180"/>
+            <rect x="0" y="60" width="120" height="30"/>
+        </svg>
+
         <div class="container">
             <div class="section-header fade-in">
-                <h2>I Nostri Servizi</h2>
-                <div class="section-line"></div>
-                <p>Un servizio completo per accompagnarvi in ogni necessità</p>
+                <span class="section-label">I Nostri Servizi</span>
+                <h2>Un servizio <em>completo</em>, in ogni momento</h2>
+                <p>Dall'organizzazione del rito funebre alla gestione burocratica, ci occupiamo di ogni dettaglio affinch&eacute; possiate dedicarvi solo al vostro cordoglio.</p>
             </div>
+
             <div class="services-grid">
-                <div class="service-card fade-in" style="background-image: url('images/s1.jpg');">
-                    <div class="service-card-overlay"></div>
-                    <div class="service-card-icon">
-                        <i class="fas fa-file-signature"></i>
+                <!-- CARD 1 - Featured (grande) -->
+                <article class="service-card fade-in-scale" style="background-image: url('images/s1.jpg');">
+                    <div class="service-card-content">
+                        <div class="service-card-icon">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <h3>Agenzia Funebre Completa</h3>
+                        <p>Organizzazione completa del servizio funebre: dalla scelta del cofano agli addobbi, dal trasporto alla cerimonia. Gestiamo ogni aspetto con cura e professionalit&agrave;, permettendovi di vivere serenamente ogni fase del commiato.</p>
                     </div>
-                    <h3>Agenzia Funebre Completa</h3>
-                    <p>Organizzazione completa del servizio funebre: dalla scelta del cofano agli addobbi, dal trasporto alla cerimonia, gestendo ogni aspetto con cura e professionalità.</p>
-                </div>
-                <div class="service-card fade-in" style="background-image: url('images/s5.jpg');">
-                    <div class="service-card-overlay"></div>
-                    <div class="service-card-icon">
-                        <i class="fas fa-landmark"></i>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="service-card fade-in-scale stagger-1" style="background-image: url('images/s5.jpg');">
+                    <div class="service-card-content">
+                        <div class="service-card-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h3>Lavori Cimiteriali</h3>
+                        <p>Tumulazione, estumulazione, esumazione, gestione loculi e manutenzione sepolture.</p>
                     </div>
-                    <h3>Lavori Cimiteriali</h3>
-                    <p>Servizi cimiteriali completi: tumulazione, estumulazione, esumazione, gestione loculi e manutenzione sepolture con competenza e rispetto.</p>
-                </div>
-                <div class="service-card fade-in" style="background-image: url('images/s6.jpg');">
-                    <div class="service-card-overlay"></div>
-                    <div class="service-card-icon">
-                        <i class="fas fa-hand-sparkles"></i>
+                </article>
+
+                <!-- CARD 3 -->
+                <article class="service-card fade-in-scale stagger-2" style="background-image: url('images/s6.jpg');">
+                    <div class="service-card-content">
+                        <div class="service-card-icon">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+                        <h3>Tanatoestetica</h3>
+                        <p>Trattamento estetico professionale per restituire un aspetto sereno e naturale.</p>
                     </div>
-                    <h3>Tanatoestetica</h3>
-                    <p>Trattamento estetico professionale della salma per restituire un aspetto sereno e naturale, nel rispetto della dignità del defunto.</p>
-                </div>
-                <div class="service-card fade-in" style="background-image: url('images/s1-1.jpg');">
-                    <div class="service-card-overlay"></div>
-                    <div class="service-card-icon">
-                        <i class="fas fa-cross"></i>
+                </article>
+
+                <!-- CARD 4 -->
+                <article class="service-card fade-in-scale stagger-3" style="background-image: url('images/s1-1.jpg');">
+                    <div class="service-card-content">
+                        <div class="service-card-icon">
+                            <i class="fas fa-cross"></i>
+                        </div>
+                        <h3>Camera Ardente</h3>
+                        <p>Allestimento della camera ardente presso il domicilio o le nostre strutture, curato in ogni dettaglio per un ultimo saluto raccolto e dignitoso.</p>
                     </div>
-                    <h3>Camera Ardente</h3>
-                    <p>Allestimento della camera ardente presso il domicilio o le nostre strutture, curato in ogni dettaglio per un ultimo saluto raccolto e dignitoso.</p>
-                </div>
-                <div class="service-card fade-in" style="background-image: url('images/s2.jpg');">
-                    <div class="service-card-overlay"></div>
-                    <div class="service-card-icon">
-                        <i class="fas fa-seedling"></i>
+                </article>
+
+                <!-- CARD 5 -->
+                <article class="service-card fade-in-scale stagger-4" style="background-image: url('images/s2.jpg');">
+                    <div class="service-card-content">
+                        <div class="service-card-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Addobbi Floreali</h3>
+                        <p>Composizioni realizzate nel nostro <strong>laboratorio floreale interno</strong>: eleganti, personalizzate e curate per rendere omaggio ai vostri cari con gusto e raffinatezza.</p>
                     </div>
-                    <h3>Addobbi Floreali</h3>
-                    <p>Composizioni floreali eleganti e personalizzate per rendere omaggio ai vostri cari con gusto e raffinatezza.</p>
-                </div>
-                <div class="service-card fade-in" style="background-image: url('images/s3.jpg');">
-                    <div class="service-card-overlay"></div>
-                    <div class="service-card-icon">
-                        <i class="fas fa-clipboard-check"></i>
+                </article>
+
+                <!-- CARD 6 -->
+                <article class="service-card fade-in-scale stagger-5" style="background-image: url('images/s3.jpg');">
+                    <div class="service-card-content">
+                        <div class="service-card-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h3>Assistenza Burocratica</h3>
+                        <p>Gestione completa delle pratiche amministrative e della documentazione.</p>
                     </div>
-                    <h3>Assistenza Burocratica</h3>
-                    <p>Gestione completa di tutte le pratiche amministrative: certificati, permessi, comunicazioni agli enti competenti e disbrigo documentazione.</p>
-                </div>
-                <div class="service-card fade-in" style="background-image: url('images/s4.jpg');">
-                    <div class="service-card-overlay"></div>
-                    <div class="service-card-icon">
-                        <i class="fas fa-fire"></i>
+                </article>
+
+                <!-- CARD 7 -->
+                <article class="service-card fade-in-scale stagger-6" style="background-image: url('images/s4.jpg');">
+                    <div class="service-card-content">
+                        <div class="service-card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Cremazione Salma</h3>
+                        <p>Assistenza completa per il servizio di cremazione, incluse le pratiche burocratiche e la scelta dell'urna cineraria. Un'alternativa rispettosa e curata in ogni fase.</p>
                     </div>
-                    <h3>Cremazione Salma</h3>
-                    <p>Assistenza completa per il servizio di cremazione, incluse le pratiche burocratiche e la scelta dell'urna cineraria.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- ========== GALLERIA ========== -->
-    <section class="section gallery" id="galleria">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Galleria</h2>
-                <div class="section-line"></div>
-                <p>Le immagini della nostra agenzia e dei nostri servizi</p>
-            </div>
-            <div class="gallery-grid fade-in">
-                <div class="gallery-item">
-                    <img src="images/s1.jpg" alt="Agenzia Funebre Fratelli Di Rosa - Servizio funebre completo" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s1-1.jpg" alt="Allestimento camera ardente" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s2.jpg" alt="Addobbi floreali e composizioni" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s3.jpg" alt="Assistenza burocratica e pratiche funerarie" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s4.jpg" alt="Servizio cremazione salma" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s5.jpg" alt="Lavori cimiteriali" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s6.jpg" alt="Servizio di tanatoestetica" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s7.jpg" alt="Fratelli Di Rosa - La nostra agenzia" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s8.jpg" alt="Fratelli Di Rosa - Struttura e servizi" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/s9.jpg" alt="Fratelli Di Rosa - Dettagli e allestimenti" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Lightbox Carousel -->
-            <div class="lightbox-overlay" id="lightbox">
-                <button class="lightbox-close" aria-label="Chiudi">&times;</button>
-                <button class="lightbox-prev" aria-label="Foto precedente"><i class="fas fa-chevron-left"></i></button>
-                <img src="" alt="" id="lightboxImg">
-                <button class="lightbox-next" aria-label="Foto successiva"><i class="fas fa-chevron-right"></i></button>
-                <div class="lightbox-counter" id="lightboxCounter"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== PERCHÉ SCEGLIERCI ========== -->
+    <!-- ========== PERCHÉ SCEGLIERCI - Timeline ========== -->
     <section class="section why-us" id="perche-sceglierci">
+        <span class="section-number" aria-hidden="true">03</span>
+        <svg class="bg-cross" viewBox="0 0 120 180" aria-hidden="true">
+            <rect x="45" y="0" width="30" height="180"/>
+            <rect x="0" y="60" width="120" height="30"/>
+        </svg>
+
         <div class="container">
-            <div class="section-header fade-in">
-                <h2>Perché Sceglierci</h2>
-                <div class="section-line"></div>
+            <div class="section-header fade-in" style="text-align: center;">
+                <span class="section-label" style="justify-content: center;">Perch&eacute; Sceglierci</span>
+                <h2>I valori <em>che ci guidano</em></h2>
+                <p style="margin: 0 auto;">Ogni famiglia &egrave; unica. Ogni momento richiede attenzione. Ecco cosa ci distingue.</p>
             </div>
-            <div class="why-us-grid">
-                <div class="why-us-item fade-in">
-                    <div class="why-us-item-icon">
-                        <i class="fas fa-clock"></i>
+
+            <div class="timeline">
+                <div class="timeline-item fade-in-left">
+                    <div class="timeline-item-header">
+                        <div class="timeline-item-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Servizio H24 &mdash; 7 giorni su 7</h3>
                     </div>
-                    <h3>Diurno e Notturno</h3>
-                    <p>Siamo sempre raggiungibili, di giorno e di notte. In qualsiasi momento abbiate bisogno, potete contare sulla nostra presenza immediata e il nostro supporto.</p>
+                    <p>
+                        Siamo disponibili <strong>24 ore su 24, 7 giorni su 7</strong>, per rispondere alle vostre chiamate
+                        e garantirvi una presenza immediata in ogni momento. Il nostro supporto non ha orari,
+                        perch&eacute; sappiamo che le necessit&agrave; non attendono.
+                    </p>
                 </div>
-                <div class="why-us-item fade-in">
-                    <div class="why-us-item-icon">
-                        <i class="fas fa-award"></i>
+
+                <div class="timeline-item fade-in-left stagger-1">
+                    <div class="timeline-item-header">
+                        <div class="timeline-item-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Esperienza &amp; Certificazioni</h3>
                     </div>
-                    <h3>Esperienza e Certificazioni</h3>
-                    <p>Personale qualificato con certificazioni di Responsabile conduzione attività funeraria e Addetto necroforo, per un servizio conforme alle normative e di altissima qualità.</p>
+                    <p>
+                        Personale qualificato con certificazioni di <strong>Responsabile conduzione attivit&agrave; funeraria</strong>
+                        e <strong>Addetto necroforo</strong>. Un servizio conforme alle normative vigenti
+                        e di altissima qualit&agrave;, con competenza certificata e attenzione a ogni dettaglio organizzativo.
+                    </p>
                 </div>
-                <div class="why-us-item fade-in">
-                    <div class="why-us-item-icon">
-                        <i class="fas fa-hand-holding-heart"></i>
+
+                <div class="timeline-item fade-in-left stagger-2">
+                    <div class="timeline-item-header">
+                        <div class="timeline-item-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3>Vicinanza umana &amp; discrezione</h3>
                     </div>
-                    <h3>Vicinanza Umana</h3>
-                    <p>Ogni famiglia è unica. Offriamo un supporto umano e personalizzato, con la discrezione, l'empatia e il rispetto che il momento richiede.</p>
+                    <p>
+                        Ogni famiglia &egrave; unica. Offriamo un supporto personalizzato, con l'empatia e la riservatezza
+                        che il momento richiede. Accompagniamo ogni famiglia con rispetto, ascoltando le vostre esigenze
+                        e le vostre volont&agrave;.
+                    </p>
+                </div>
+
+                <div class="timeline-item fade-in-left stagger-3">
+                    <div class="timeline-item-header">
+                        <div class="timeline-item-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Un'eredit&agrave; familiare &mdash; dal 1999</h3>
+                    </div>
+                    <p>
+                        L'agenzia nasce nel <strong>2018</strong>, ma affonda le sue radici nell'esperienza del padre,
+                        nel settore <strong>dal 1999</strong>. Una tradizione familiare portata avanti con passione
+                        da Giuseppe e Gaspare, al servizio della comunit&agrave; di Ravanusa e di tutto il territorio
+                        agrigentino, con il rapporto umano al centro di ogni servizio.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CONTATTI ========== -->
-    <section class="section contact" id="contatti">
+    <!-- ========== GALLERIA - carousel orizzontale ========== -->
+    <section class="section gallery" id="galleria">
+        <span class="section-number" aria-hidden="true">04</span>
+        <svg class="bg-cross" viewBox="0 0 120 180" aria-hidden="true">
+            <rect x="45" y="0" width="30" height="180"/>
+            <rect x="0" y="60" width="120" height="30"/>
+        </svg>
+
         <div class="container">
             <div class="section-header fade-in">
-                <h2>Contattaci</h2>
-                <div class="section-line"></div>
-                <p>Siamo a vostra disposizione per qualsiasi necessità</p>
+                <span class="section-label">Galleria</span>
+                <h2>Le immagini <em>del nostro lavoro</em></h2>
+                <p>Un viaggio visivo tra gli allestimenti, i servizi e i momenti della nostra attivit&agrave;.</p>
             </div>
+        </div>
 
-            <div class="contact-wrapper">
-                <!-- Info Contatti -->
-                <div class="contact-info fade-in-left">
-                    <h3>Recapiti</h3>
-
-                    <div class="contact-info-item">
-                        <i class="fas fa-location-dot"></i>
-                        <div class="contact-info-item-content">
-                            <h4>Indirizzo</h4>
-                            <p>Via Olimpica 18, 92029<br>Ravanusa (AG)</p>
-                        </div>
+        <div class="gallery-carousel-wrap fade-in">
+            <div class="container">
+                <div class="gallery-carousel">
+                    <div class="gallery-item">
+                        <img src="images/s1.jpg" alt="Agenzia Funebre Fratelli Di Rosa - Servizio funebre completo" loading="lazy">
                     </div>
-
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone"></i>
-                        <div class="contact-info-item-content">
-                            <h4>Telefono</h4>
-                            <div class="contact-phones">
-                                <a href="tel:+393289685570">Giuseppe: 328 968 5570</a>
-                                <a href="tel:+393287480631">Gaspare: 328 748 0631</a>
-                            </div>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="images/s1-1.jpg" alt="Allestimento camera ardente" loading="lazy">
                     </div>
-
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div class="contact-info-item-content">
-                            <h4>Email</h4>
-                            <a href="mailto:dirosaservizi@gmail.com">dirosaservizi@gmail.com</a>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="images/s2.jpg" alt="Addobbi floreali e composizioni" loading="lazy">
                     </div>
-
-                    <div class="contact-info-item">
-                        <i class="fas fa-clock"></i>
-                        <div class="contact-info-item-content">
-                            <h4>Disponibilità</h4>
-                            <p>Servizio diurno e notturno<br>Sempre disponibili</p>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="images/s3.jpg" alt="Assistenza burocratica e pratiche funerarie" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/s4.jpg" alt="Servizio cremazione salma" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/s5.jpg" alt="Lavori cimiteriali" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/s6.jpg" alt="Servizio di tanatoestetica" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/s7.jpg" alt="Fratelli Di Rosa - La nostra agenzia" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/s8.jpg" alt="Fratelli Di Rosa - Struttura e servizi" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/s9.jpg" alt="Fratelli Di Rosa - Dettagli e allestimenti" loading="lazy">
                     </div>
                 </div>
 
-                <!-- Form Contatto -->
-                <div class="contact-form fade-in-right">
-                    <h3>Scrivici un messaggio</h3>
-                    <form id="contactForm" novalidate>
-                        <div class="form-group">
-                            <label for="nome">Nome e Cognome *</label>
-                            <input type="text" id="nome" name="nome" placeholder="Il tuo nome completo" required>
-                            <p class="error-message">Inserisci il tuo nome</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Telefono *</label>
-                            <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono" required>
-                            <p class="error-message">Inserisci il tuo numero di telefono</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="La tua email (opzionale)">
-                            <p class="error-message">Inserisci un indirizzo email valido</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="messaggio">Messaggio *</label>
-                            <textarea id="messaggio" name="messaggio" placeholder="Scrivi il tuo messaggio..." required></textarea>
-                            <p class="error-message">Inserisci un messaggio</p>
-                        </div>
-                        <div class="form-checkbox" id="privacyCheckbox">
-                            <input type="checkbox" id="privacy" name="privacy" required>
-                            <label for="privacy">
-                                Ho letto e accetto la <a href="privacy.html" target="_blank">Privacy Policy</a>.
-                                Autorizzo il trattamento dei miei dati personali ai sensi del Regolamento UE 2016/679 (GDPR). *
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-submit">
-                            <i class="fas fa-paper-plane"></i> Invia Messaggio
-                        </button>
-                    </form>
-                    <div class="form-success" id="formSuccess">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>Messaggio inviato!</h4>
-                        <p>Grazie per averci contattato. Vi risponderemo il prima possibile.</p>
+                <p class="gallery-hint">
+                    <i class="fas fa-arrows-left-right"></i> Scorri lateralmente <i class="fas fa-arrows-left-right"></i>
+                </p>
+            </div>
+        </div>
+
+        <!-- Lightbox Carousel -->
+        <div class="lightbox-overlay" id="lightbox">
+            <button class="lightbox-close" aria-label="Chiudi">&times;</button>
+            <button class="lightbox-prev" aria-label="Foto precedente"><i class="fas fa-chevron-left"></i></button>
+            <img src="" alt="" id="lightboxImg">
+            <button class="lightbox-next" aria-label="Foto successiva"><i class="fas fa-chevron-right"></i></button>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+    </section>
+
+    <!-- ========== CONTATTI - info cards + form centrato ========== -->
+    <section class="section contact" id="contatti">
+        <span class="section-number" aria-hidden="true">05</span>
+        <svg class="bg-cross" viewBox="0 0 120 180" aria-hidden="true">
+            <rect x="45" y="0" width="30" height="180"/>
+            <rect x="0" y="60" width="120" height="30"/>
+        </svg>
+
+        <div class="container">
+            <div class="section-header fade-in" style="text-align: center;">
+                <span class="section-label" style="justify-content: center;">Contattaci</span>
+                <h2>Siamo a vostra <em>disposizione</em></h2>
+                <p style="margin: 0 auto;">Potete raggiungerci in qualsiasi momento, di giorno o di notte, tramite i canali qui sotto.</p>
+            </div>
+
+            <!-- Info cards orizzontali -->
+            <div class="contact-cards">
+                <div class="contact-card fade-in stagger-1">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-location-dot"></i>
                     </div>
+                    <h4>Indirizzo</h4>
+                    <p>Via Olimpica 18<br>92029 Ravanusa (AG)</p>
+                </div>
+
+                <div class="contact-card fade-in stagger-2">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4>Giuseppe</h4>
+                    <a href="tel:+393289685570">328 968 5570</a>
+                </div>
+
+                <div class="contact-card fade-in stagger-3">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4>Gaspare</h4>
+                    <a href="tel:+393287480631">328 748 0631</a>
+                </div>
+
+                <div class="contact-card fade-in stagger-4">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h4>Email</h4>
+                    <a href="mailto:dirosaservizi@gmail.com">dirosaservizi<br>@gmail.com</a>
+                </div>
+            </div>
+
+            <!-- Form centrato -->
+            <div class="contact-form-wrap fade-in-scale">
+                <h3>Scrivici un messaggio</h3>
+                <p>Compila il modulo e ti risponderemo il prima possibile</p>
+                <form id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="nome">Nome e Cognome *</label>
+                        <input type="text" id="nome" name="nome" placeholder="Il tuo nome completo" required>
+                        <p class="error-message">Inserisci il tuo nome</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono *</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono" required>
+                        <p class="error-message">Inserisci il tuo numero di telefono</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="La tua email (opzionale)">
+                        <p class="error-message">Inserisci un indirizzo email valido</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="messaggio">Messaggio *</label>
+                        <textarea id="messaggio" name="messaggio" placeholder="Scrivi il tuo messaggio..." required></textarea>
+                        <p class="error-message">Inserisci un messaggio</p>
+                    </div>
+                    <div class="form-checkbox" id="privacyCheckbox">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">
+                            Ho letto e accetto la <a href="privacy.html" target="_blank">Privacy Policy</a>.
+                            Autorizzo il trattamento dei miei dati personali ai sensi del Regolamento UE 2016/679 (GDPR). *
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fas fa-paper-plane"></i> Invia Messaggio
+                    </button>
+                </form>
+                <div class="form-success" id="formSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Messaggio inviato!</h4>
+                    <p>Grazie per averci contattato. Vi risponderemo il prima possibile.</p>
                 </div>
             </div>
 
             <!-- Google Maps -->
             <div class="contact-map fade-in">
-                <h3>Dove Trovarci</h3>
+                <h3>Dove trovarci</h3>
                 <div class="map-container" id="mapContainer">
                     <div class="map-placeholder" id="mapPlaceholder">
                         <i class="fas fa-map-marker-alt"></i>
@@ -418,7 +571,7 @@
                     </a>
                     <p>
                         Agenzia Funebre a Ravanusa.
-                        Servizi funebri completi con professionalità, rispetto e disponibilità diurna e notturna.
+                        Servizi funebri completi con professionalit&agrave;, rispetto e disponibilit&agrave; diurna e notturna.
                     </p>
                     <div class="footer-social">
                         <a href="https://www.facebook.com/AgenziaFunebreDiRosa" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -432,6 +585,7 @@
                         <a href="#hero">Home</a>
                         <a href="#chi-siamo">Chi Siamo</a>
                         <a href="#servizi">Servizi</a>
+                        <a href="#perche-sceglierci">Perch&eacute; sceglierci</a>
                         <a href="#galleria">Galleria</a>
                         <a href="#contatti">Contatti</a>
                     </div>
@@ -487,7 +641,7 @@
                     <h4>Cookie Tecnici</h4>
                     <span class="cookie-always-active">Sempre attivi</span>
                 </div>
-                <p>Necessari per il funzionamento del sito web. Includono le preferenze sui cookie e le funzionalità essenziali.</p>
+                <p>Necessari per il funzionamento del sito web. Includono le preferenze sui cookie e le funzionalit&agrave; essenziali.</p>
             </div>
 
             <div class="cookie-category">
@@ -498,7 +652,7 @@
                         <span class="toggle-slider"></span>
                     </label>
                 </div>
-                <p>Utilizzati per integrare servizi esterni come Google Maps e Google Fonts. La disattivazione potrebbe limitare alcune funzionalità.</p>
+                <p>Utilizzati per integrare servizi esterni come Google Maps e Google Fonts. La disattivazione potrebbe limitare alcune funzionalit&agrave;.</p>
             </div>
 
             <div class="cookie-modal-actions">

@@ -6,6 +6,20 @@
 (function () {
     'use strict';
 
+    // ========== SCROLL PROGRESS BAR ==========
+
+    var scrollProgress = document.getElementById('scrollProgress');
+
+    function updateScrollProgress() {
+        if (!scrollProgress) return;
+        var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        var scrolled = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+        scrollProgress.style.width = scrolled + '%';
+    }
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+
     // ========== HERO FLOATING PARTICLES ==========
 
     var particlesContainer = document.getElementById('heroParticles');
@@ -220,7 +234,7 @@
 
     // ========== INTERSECTION OBSERVER - FADE IN ANIMATIONS ==========
 
-    var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+    var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-scale, .fade-in-blur');
 
     if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(
