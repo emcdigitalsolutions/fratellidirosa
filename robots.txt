@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://emcdigitalsolutions.github.io/fratellidirosa/sitemap.xml
+Sitemap: https://www.agenziafunebrefratellidirosa.it/sitemap.xml
