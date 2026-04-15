@@ -20,28 +20,6 @@
     window.addEventListener('scroll', updateScrollProgress, { passive: true });
     updateScrollProgress();
 
-    // ========== HERO FLOATING PARTICLES ==========
-
-    var particlesContainer = document.getElementById('heroParticles');
-    if (particlesContainer) {
-        // Solo piccole croci fluttuanti, movimento lento e delicato
-        for (var i = 0; i < 18; i++) {
-            var particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + '%';
-            // Ritardo ampio per distribuzione naturale
-            particle.style.animationDelay = (Math.random() * 20) + 's';
-            // Durata 18-30s: molto piu lenta di prima (era 6-12s)
-            particle.style.animationDuration = (18 + Math.random() * 12) + 's';
-            // Piccole croci: 8-14px (proporzione croce latina: altezza > larghezza)
-            var width = 6 + Math.random() * 5;
-            var height = width * 1.6;
-            particle.style.width = width + 'px';
-            particle.style.height = height + 'px';
-            particlesContainer.appendChild(particle);
-        }
-    }
-
     // ========== NAVBAR SCROLL BEHAVIOR ==========
 
     var header = document.getElementById('header');

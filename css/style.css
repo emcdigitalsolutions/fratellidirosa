@@ -1,7 +1,7 @@
 /**
  * Fratelli Di Rosa - Agenzia Funebre
- * Stylesheet principale - Tema cinematografico scuro
- * Palette: #0a0e15 / #141821 / #9bb0c4 (silver-blue)
+ * Stylesheet principale - Tema elegante oro e grigio
+ * Palette: #f7f4ef / #ede9e1 / #c9a84c (oro) / #8a8a8a (grigio)
  */
 
 /* ==========================================================================
@@ -15,29 +15,29 @@
 }
 
 :root {
-    /* Palette cinematografica */
-    --bg-deep: #0a0e15;
-    --bg-primary: #141821;
-    --bg-card: #1a1f2e;
-    --bg-elevated: #222838;
+    /* Palette elegante oro e grigio */
+    --bg-deep: #f7f4ef;
+    --bg-primary: #ede9e1;
+    --bg-card: #ffffff;
+    --bg-elevated: #faf8f4;
 
-    --accent: #7b8fa3;
-    --accent-light: #9bb0c4;
-    --accent-silver: #a8bfd1;
-    --accent-bright: #c5d5e4;
+    --accent: #937a25;
+    --accent-light: #b8972f;
+    --accent-silver: #8a8a8a;
+    --accent-bright: #d4af37;
 
-    --text-primary: #e8eaed;
-    --text-light: #c0c4cc;
-    --text-medium: #8a919c;
-    --text-muted: #6a7180;
+    --text-primary: #2c2c2c;
+    --text-light: #4a4a4a;
+    --text-medium: #7a7a7a;
+    --text-muted: #a0a0a0;
 
-    --border-cool: rgba(123, 143, 163, 0.15);
-    --border-elevated: rgba(123, 143, 163, 0.25);
+    --border-cool: rgba(201, 168, 76, 0.15);
+    --border-elevated: rgba(201, 168, 76, 0.30);
 
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 40px rgba(155, 176, 196, 0.15);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 40px rgba(201, 168, 76, 0.10);
 
     --nav-height: 72px;
     --container-max: 1200px;
@@ -93,7 +93,7 @@ button { font-family: inherit; cursor: pointer; }
     background: linear-gradient(90deg, var(--accent), var(--accent-bright));
     z-index: 9999;
     transition: width .1s linear;
-    box-shadow: 0 0 10px rgba(155, 176, 196, .5);
+    box-shadow: 0 0 10px rgba(201, 168, 76, .5);
 }
 
 /* ==========================================================================
@@ -113,7 +113,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .header.scrolled {
-    background: rgba(10, 14, 21, .85);
+    background: rgba(247, 244, 239, .92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom-color: var(--border-cool);
@@ -133,6 +133,14 @@ button { font-family: inherit; cursor: pointer; }
     text-decoration: none;
 }
 
+/* Logo come immagine */
+.nav-logo-img {
+    height: 44px;
+    width: auto;
+    display: block;
+}
+
+/* Fallback icon (legacy) */
 .nav-logo-icon {
     width: 40px;
     height: 40px;
@@ -144,9 +152,9 @@ button { font-family: inherit; cursor: pointer; }
     font-family: 'Playfair Display', serif;
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--bg-deep);
+    color: #fff;
     letter-spacing: .5px;
-    box-shadow: 0 4px 14px rgba(123, 143, 163, .3);
+    box-shadow: 0 4px 14px rgba(201, 168, 76, .3);
 }
 
 .nav-logo-text {
@@ -228,7 +236,7 @@ button { font-family: inherit; cursor: pointer; }
 .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ==========================================================================
-   4. BACKGROUND CROCE (watermark sezioni) + DECORAZIONI
+   4. DECORAZIONI DI SFONDO
    ========================================================================== */
 
 .bg-cross {
@@ -274,7 +282,7 @@ button { font-family: inherit; cursor: pointer; }
     font-weight: 700;
     font-style: italic;
     color: var(--accent);
-    opacity: .045;
+    opacity: .06;
     line-height: .8;
     pointer-events: none;
     user-select: none;
@@ -293,56 +301,6 @@ button { font-family: inherit; cursor: pointer; }
     padding: calc(var(--nav-height) + 40px) 0 60px;
     background: linear-gradient(170deg, var(--bg-primary) 0%, var(--bg-deep) 100%);
     overflow: hidden;
-}
-
-.hero-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.particle {
-    position: absolute;
-    top: -30px;
-    pointer-events: none;
-    opacity: 0;
-    animation: particleFall linear infinite;
-    will-change: transform, opacity;
-}
-
-.particle::before,
-.particle::after {
-    content: '';
-    position: absolute;
-    background: var(--accent-light);
-    border-radius: 1px;
-    box-shadow: 0 0 6px rgba(155, 176, 196, 0.35);
-}
-
-/* Barra verticale della croce */
-.particle::before {
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1.5px;
-    transform: translateX(-50%);
-}
-
-/* Barra orizzontale della croce (piu corta, posizionata in alto come croce latina) */
-.particle::after {
-    top: 28%;
-    left: 0;
-    right: 0;
-    height: 1.5px;
-    transform: translateY(-50%);
-}
-
-@keyframes particleFall {
-    0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
-    8% { opacity: .28; }
-    92% { opacity: .22; }
-    100% { transform: translateY(110vh) rotate(180deg); opacity: 0; }
 }
 
 .hero-container {
@@ -371,7 +329,7 @@ button { font-family: inherit; cursor: pointer; }
     color: var(--accent-light);
     margin-bottom: 24px;
     padding: 8px 18px;
-    background: rgba(123, 143, 163, .08);
+    background: rgba(201, 168, 76, .08);
     border: 1px solid var(--border-cool);
     border-radius: 50px;
 }
@@ -396,7 +354,7 @@ button { font-family: inherit; cursor: pointer; }
     color: var(--text-primary);
     margin-bottom: 16px;
     letter-spacing: -1px;
-    text-shadow: 0 4px 30px rgba(0, 0, 0, .4);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .06);
 }
 
 .hero-subtitle {
@@ -450,13 +408,13 @@ button { font-family: inherit; cursor: pointer; }
 
 .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent-light));
-    color: var(--bg-deep);
-    box-shadow: 0 8px 24px rgba(123, 143, 163, .25);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(201, 168, 76, .25);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(123, 143, 163, .4);
+    box-shadow: 0 12px 32px rgba(201, 168, 76, .4);
 }
 
 .btn-ghost {
@@ -466,7 +424,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .btn-ghost:hover {
-    background: rgba(123, 143, 163, .1);
+    background: rgba(201, 168, 76, .1);
     border-color: var(--accent-light);
 }
 
@@ -475,7 +433,7 @@ button { font-family: inherit; cursor: pointer; }
     align-items: center;
     gap: 8px;
     padding: 10px 18px;
-    background: rgba(123, 143, 163, .08);
+    background: rgba(201, 168, 76, .08);
     border: 1px solid var(--border-cool);
     border-radius: 50px;
     font-size: .82rem;
@@ -503,6 +461,7 @@ button { font-family: inherit; cursor: pointer; }
     font-size: .85rem;
     font-weight: 500;
     transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
 }
 
 .hero-phones a:hover {
@@ -549,14 +508,13 @@ button { font-family: inherit; cursor: pointer; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(.85) contrast(1.05);
 }
 
 .hero-photo-frame::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(10, 14, 21, .7) 100%);
+    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, .5) 100%);
     pointer-events: none;
 }
 
@@ -566,10 +524,10 @@ button { font-family: inherit; cursor: pointer; }
     left: 24px;
     right: 24px;
     padding: 16px 20px;
-    background: rgba(10, 14, 21, .75);
+    background: rgba(0, 0, 0, .6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--border-elevated);
+    border: 1px solid rgba(255, 255, 255, .15);
     border-radius: 10px;
     z-index: 3;
 }
@@ -578,7 +536,7 @@ button { font-family: inherit; cursor: pointer; }
     font-size: .7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--accent-light);
+    color: var(--accent-bright);
     margin-bottom: 4px;
     font-weight: 600;
 }
@@ -587,7 +545,7 @@ button { font-family: inherit; cursor: pointer; }
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #fff;
 }
 
 .hero-photo-ring {
@@ -616,15 +574,6 @@ button { font-family: inherit; cursor: pointer; }
     opacity: .07;
     z-index: -1;
     pointer-events: none;
-}
-
-/* Hero cross SVG */
-.hero .bg-cross {
-    width: 600px;
-    height: 900px;
-    top: 45%;
-    left: 28%;
-    opacity: .05;
 }
 
 /* ==========================================================================
@@ -690,14 +639,6 @@ button { font-family: inherit; cursor: pointer; }
     background: var(--bg-primary);
 }
 
-.about .bg-cross {
-    width: 500px;
-    height: 700px;
-    top: 55%;
-    left: 78%;
-    opacity: .035;
-}
-
 .about-layout {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
@@ -752,7 +693,7 @@ button { font-family: inherit; cursor: pointer; }
     align-items: center;
     justify-content: center;
     font-size: 1.4rem;
-    color: var(--bg-deep);
+    color: #fff;
     margin-bottom: 20px;
 }
 
@@ -803,14 +744,6 @@ button { font-family: inherit; cursor: pointer; }
 
 .services {
     background: var(--bg-deep);
-}
-
-.services .bg-cross {
-    width: 700px;
-    height: 1000px;
-    top: 50%;
-    left: 22%;
-    opacity: .03;
 }
 
 .services-grid {
@@ -865,10 +798,10 @@ button { font-family: inherit; cursor: pointer; }
     width: 48px;
     height: 48px;
     border-radius: 10px;
-    background: rgba(155, 176, 196, .12);
+    background: rgba(201, 168, 76, .15);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--border-elevated);
+    border: 1px solid rgba(255, 255, 255, .15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -879,25 +812,26 @@ button { font-family: inherit; cursor: pointer; }
 
 .service-card h3 {
     font-size: 1.35rem;
-    color: var(--text-primary);
+    color: #fff;
     margin-bottom: 10px;
     line-height: 1.3;
 }
 
 .service-card p {
     font-size: .9rem;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, .85);
     line-height: 1.65;
 }
 
-/* Asymmetric grid layout */
+/* Asymmetric grid layout - 8 cards */
 .service-card:nth-child(1) { grid-column: span 4; grid-row: span 2; min-height: 380px; }
 .service-card:nth-child(2) { grid-column: span 2; }
 .service-card:nth-child(3) { grid-column: span 2; }
 .service-card:nth-child(4) { grid-column: span 3; }
 .service-card:nth-child(5) { grid-column: span 3; }
 .service-card:nth-child(6) { grid-column: span 2; }
-.service-card:nth-child(7) { grid-column: span 4; }
+.service-card:nth-child(7) { grid-column: span 2; }
+.service-card:nth-child(8) { grid-column: span 2; }
 
 .service-card:nth-child(1) h3 { font-size: 1.8rem; }
 .service-card:nth-child(1) p { font-size: 1rem; max-width: 540px; }
@@ -909,14 +843,6 @@ button { font-family: inherit; cursor: pointer; }
 .why-us {
     background: var(--bg-primary);
     padding: 110px 0;
-}
-
-.why-us .bg-cross {
-    width: 500px;
-    height: 750px;
-    top: 50%;
-    left: 85%;
-    opacity: .04;
 }
 
 .timeline {
@@ -934,7 +860,7 @@ button { font-family: inherit; cursor: pointer; }
     top: 10px;
     bottom: 10px;
     width: 2px;
-    background: linear-gradient(180deg, transparent, var(--accent), var(--accent-silver), var(--accent), transparent);
+    background: linear-gradient(180deg, transparent, var(--accent), var(--accent-bright), var(--accent), transparent);
     opacity: .4;
 }
 
@@ -955,7 +881,7 @@ button { font-family: inherit; cursor: pointer; }
     border-radius: 50%;
     background: var(--accent);
     border: 4px solid var(--bg-primary);
-    box-shadow: 0 0 0 1px var(--accent), 0 0 20px rgba(155, 176, 196, .4);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 20px rgba(201, 168, 76, .4);
 }
 
 .timeline-item-header {
@@ -977,6 +903,7 @@ button { font-family: inherit; cursor: pointer; }
     font-size: 1.2rem;
     color: var(--accent-light);
     flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
 }
 
 .timeline-item h3 {
@@ -993,20 +920,79 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
-   10. GALLERIA - carousel orizzontale
+   10. TESTIMONIANZE
    ========================================================================== */
 
-.gallery {
+.testimonials {
     background: var(--bg-deep);
     padding: 110px 0;
 }
 
-.gallery .bg-cross {
-    width: 600px;
-    height: 900px;
-    top: 60%;
-    left: 18%;
-    opacity: .035;
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-cool);
+    border-radius: 16px;
+    padding: 36px 32px;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.testimonial-quote {
+    margin-bottom: 16px;
+}
+
+.testimonial-quote i {
+    font-size: 1.5rem;
+    color: var(--accent-bright);
+    opacity: .5;
+}
+
+.testimonial-card > p {
+    font-size: .95rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-style: italic;
+    flex-grow: 1;
+}
+
+.testimonial-author {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-cool);
+}
+
+.testimonial-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   11. GALLERIA - carousel orizzontale
+   ========================================================================== */
+
+.gallery {
+    background: var(--bg-primary);
+    padding: 110px 0;
 }
 
 .gallery-carousel-wrap {
@@ -1047,7 +1033,7 @@ button { font-family: inherit; cursor: pointer; }
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(10, 14, 21, .5) 100%);
+    background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, .3) 100%);
     pointer-events: none;
     opacity: .6;
     transition: opacity var(--transition-base);
@@ -1109,8 +1095,8 @@ button { font-family: inherit; cursor: pointer; }
 .lightbox-next {
     position: absolute;
     background: rgba(26, 31, 46, .8);
-    border: 1px solid var(--border-elevated);
-    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: #fff;
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -1137,7 +1123,7 @@ button { font-family: inherit; cursor: pointer; }
 .lightbox-prev:hover,
 .lightbox-next:hover {
     background: var(--accent);
-    color: var(--bg-deep);
+    color: #fff;
     border-color: var(--accent);
 }
 
@@ -1147,30 +1133,22 @@ button { font-family: inherit; cursor: pointer; }
     left: 50%;
     transform: translateX(-50%);
     font-size: .85rem;
-    color: var(--text-light);
+    color: #fff;
     background: rgba(26, 31, 46, .8);
     padding: 8px 18px;
     border-radius: 20px;
-    border: 1px solid var(--border-cool);
+    border: 1px solid rgba(255, 255, 255, .15);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
 
 /* ==========================================================================
-   11. CONTATTI - info cards + form
+   12. CONTATTI - info cards + form
    ========================================================================== */
 
 .contact {
-    background: var(--bg-primary);
+    background: var(--bg-deep);
     padding: 110px 0;
-}
-
-.contact .bg-cross {
-    width: 600px;
-    height: 900px;
-    top: 50%;
-    left: 82%;
-    opacity: .035;
 }
 
 .contact-cards {
@@ -1189,6 +1167,7 @@ button { font-family: inherit; cursor: pointer; }
     padding: 28px 22px;
     text-align: center;
     transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
 }
 
 .contact-card:hover {
@@ -1206,7 +1185,7 @@ button { font-family: inherit; cursor: pointer; }
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: var(--bg-deep);
+    color: #fff;
     margin: 0 auto 16px;
 }
 
@@ -1302,7 +1281,7 @@ button { font-family: inherit; cursor: pointer; }
     outline: none;
     border-color: var(--accent-light);
     background: var(--bg-elevated);
-    box-shadow: 0 0 0 3px rgba(155, 176, 196, .12);
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, .12);
 }
 
 .form-group textarea {
@@ -1415,7 +1394,6 @@ button { font-family: inherit; cursor: pointer; }
     width: 100%;
     height: 100%;
     border: none;
-    filter: grayscale(.4) invert(.88) contrast(.9);
 }
 
 .map-placeholder {
@@ -1447,11 +1425,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
-   12. FOOTER
+   13. FOOTER
    ========================================================================== */
 
 .footer {
-    background: var(--bg-deep);
+    background: var(--bg-primary);
     padding: 60px 0 30px;
     border-top: 1px solid var(--border-cool);
     position: relative;
@@ -1499,11 +1477,12 @@ button { font-family: inherit; cursor: pointer; }
     justify-content: center;
     color: var(--text-light);
     transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
 }
 
 .footer-social a:hover {
     background: var(--accent);
-    color: var(--bg-deep);
+    color: #fff;
     border-color: var(--accent);
     transform: translateY(-2px);
 }
@@ -1565,7 +1544,7 @@ button { font-family: inherit; cursor: pointer; }
 .footer-bottom-links a:hover { color: var(--accent-light); }
 
 /* ==========================================================================
-   13. COOKIE BANNER & MODAL
+   14. COOKIE BANNER & MODAL
    ========================================================================== */
 
 .cookie-banner {
@@ -1575,7 +1554,7 @@ button { font-family: inherit; cursor: pointer; }
     right: 20px;
     max-width: 1160px;
     margin: 0 auto;
-    background: rgba(20, 24, 33, .95);
+    background: rgba(255, 255, 255, .96);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-elevated);
@@ -1628,10 +1607,10 @@ button { font-family: inherit; cursor: pointer; }
 
 .cookie-btn-accept {
     background: linear-gradient(135deg, var(--accent), var(--accent-light));
-    color: var(--bg-deep);
+    color: #fff;
 }
 
-.cookie-btn-accept:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(123, 143, 163, .3); }
+.cookie-btn-accept:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(201, 168, 76, .3); }
 
 .cookie-btn-necessary,
 .cookie-btn-settings {
@@ -1649,7 +1628,7 @@ button { font-family: inherit; cursor: pointer; }
 .cookie-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 14, 21, .85);
+    background: rgba(0, 0, 0, .5);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 9998;
@@ -1743,7 +1722,7 @@ button { font-family: inherit; cursor: pointer; }
     height: 16px;
     left: 3px;
     bottom: 3px;
-    background: var(--text-light);
+    background: var(--text-muted);
     border-radius: 50%;
     transition: var(--transition-fast);
 }
@@ -1755,7 +1734,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .toggle-switch input:checked + .toggle-slider::before {
     transform: translateX(20px);
-    background: var(--bg-deep);
+    background: #fff;
 }
 
 .cookie-modal-actions {
@@ -1766,7 +1745,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
-   14. WHATSAPP BUTTON
+   15. WHATSAPP BUTTON
    ========================================================================== */
 
 .whatsapp-btn {
@@ -1805,7 +1784,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
-   15. ANIMAZIONI (fade-in + varianti)
+   16. ANIMAZIONI (fade-in + varianti)
    ========================================================================== */
 
 .fade-in {
@@ -1869,9 +1848,10 @@ button { font-family: inherit; cursor: pointer; }
 .stagger-4 { transition-delay: .32s; }
 .stagger-5 { transition-delay: .40s; }
 .stagger-6 { transition-delay: .48s; }
+.stagger-7 { transition-delay: .56s; }
 
 /* ==========================================================================
-   16. RESPONSIVE
+   17. RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 1024px) {
@@ -1879,10 +1859,11 @@ button { font-family: inherit; cursor: pointer; }
     .service-card:nth-child(1) { grid-column: span 4; grid-row: auto; }
     .service-card:nth-child(2),
     .service-card:nth-child(3),
-    .service-card:nth-child(6) { grid-column: span 2; }
+    .service-card:nth-child(6),
+    .service-card:nth-child(7),
+    .service-card:nth-child(8) { grid-column: span 2; }
     .service-card:nth-child(4),
     .service-card:nth-child(5) { grid-column: span 2; }
-    .service-card:nth-child(7) { grid-column: span 4; }
 
     .contact-cards { grid-template-columns: repeat(2, 1fr); }
 
@@ -1908,7 +1889,7 @@ button { font-family: inherit; cursor: pointer; }
         width: 80%;
         max-width: 340px;
         height: 100vh;
-        background: rgba(10, 14, 21, .97);
+        background: rgba(247, 244, 239, .97);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
         border-left: 1px solid var(--border-cool);
@@ -1936,7 +1917,8 @@ button { font-family: inherit; cursor: pointer; }
     .service-card:nth-child(4),
     .service-card:nth-child(5),
     .service-card:nth-child(6),
-    .service-card:nth-child(7) {
+    .service-card:nth-child(7),
+    .service-card:nth-child(8) {
         grid-column: span 1;
         grid-row: auto;
         min-height: 280px;
@@ -1951,6 +1933,8 @@ button { font-family: inherit; cursor: pointer; }
     .timeline-item::before { left: -38px; }
     .timeline-item p { padding-left: 0; }
 
+    .testimonials-grid { grid-template-columns: 1fr; }
+
     .footer-content { grid-template-columns: 1fr; }
     .footer-brand { grid-column: span 1; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -1963,6 +1947,8 @@ button { font-family: inherit; cursor: pointer; }
     .cookie-banner-content { flex-direction: column; align-items: stretch; }
     .cookie-banner-actions { justify-content: stretch; }
     .cookie-btn { flex: 1; }
+
+    .nav-logo-img { height: 36px; }
 }
 
 @media (max-width: 480px) {
@@ -1979,10 +1965,11 @@ button { font-family: inherit; cursor: pointer; }
     .hero-photo-badge { left: 16px; right: 16px; padding: 12px 16px; }
     .hero-photo-badge-name { font-size: 1rem; }
     .whatsapp-btn { width: 52px; height: 52px; font-size: 1.5rem; bottom: 16px; right: 16px; }
+    .nav-logo-img { height: 32px; }
 }
 
 /* ============================================
-   17. LEGAL PAGES (privacy / cookie-policy)
+   18. LEGAL PAGES (privacy / cookie-policy)
    ============================================ */
 
 .legal-page {
@@ -1997,8 +1984,8 @@ button { font-family: inherit; cursor: pointer; }
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 20% 20%, rgba(123, 143, 163, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(155, 176, 196, 0.04) 0%, transparent 50%);
+        radial-gradient(circle at 20% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -2008,10 +1995,10 @@ button { font-family: inherit; cursor: pointer; }
     position: relative;
     z-index: 1;
     background: var(--bg-card);
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-cool);
     border-radius: 16px;
     padding: 60px 50px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
 }
 
 .legal-back {
@@ -2024,7 +2011,7 @@ button { font-family: inherit; cursor: pointer; }
     font-weight: 500;
     margin-bottom: 30px;
     padding: 10px 18px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-cool);
     border-radius: 50px;
     transition: all 0.3s ease;
 }
@@ -2057,7 +2044,7 @@ button { font-family: inherit; cursor: pointer; }
     color: var(--accent-light);
     margin: 40px 0 16px;
     padding-top: 24px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-cool);
 }
 
 .legal-content h2:first-of-type {
@@ -2075,7 +2062,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .legal-content p,
 .legal-content li {
-    color: var(--text-secondary);
+    color: var(--text-light);
     line-height: 1.75;
     font-size: 0.96rem;
     margin-bottom: 14px;
@@ -2099,7 +2086,7 @@ button { font-family: inherit; cursor: pointer; }
 .legal-content a {
     color: var(--accent-light);
     text-decoration: underline;
-    text-decoration-color: rgba(155, 176, 196, 0.4);
+    text-decoration-color: rgba(201, 168, 76, 0.4);
     text-underline-offset: 3px;
     transition: all 0.3s ease;
 }
@@ -2120,8 +2107,8 @@ button { font-family: inherit; cursor: pointer; }
 .legal-content td {
     padding: 12px 14px;
     text-align: left;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
+    border: 1px solid var(--border-cool);
+    color: var(--text-light);
 }
 
 .legal-content th {
