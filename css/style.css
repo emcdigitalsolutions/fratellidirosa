@@ -508,7 +508,7 @@ button { font-family: inherit; cursor: pointer; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 75% 65%;
+    object-position: center 75%;
 }
 
 .hero-photo-frame::after {
