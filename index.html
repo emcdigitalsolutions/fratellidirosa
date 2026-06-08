@@ -41,6 +41,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Siete disponibili 24 ore su 24?","acceptedAnswer":{"@type":"Answer","text":"Sì, siamo reperibili 24 ore su 24, 7 giorni su 7, tutto l’anno. Potete contattarci in qualsiasi momento."}},{"@type":"Question","name":"Di quali servizi vi occupate?","acceptedAnswer":{"@type":"Answer","text":"Organizziamo funerali completi: trasporto e vestizione, camera ardente, allestimenti floreali, cremazione, fotoceramica e servizi cimiteriali."}},{"@type":"Question","name":"Gestite la cremazione e il trasporto salme?","acceptedAnswer":{"@type":"Answer","text":"Sì, ci occupiamo della cremazione e del trasporto salme nazionali e internazionali, seguendo ogni fase con cura e discrezione."}},{"@type":"Question","name":"Vi occupate delle pratiche burocratiche?","acceptedAnswer":{"@type":"Answer","text":"Sì, gestiamo tutte le pratiche e i documenti necessari, sollevando la famiglia da ogni incombenza in un momento delicato."}},{"@type":"Question","name":"Dove vi trovate?","acceptedAnswer":{"@type":"Answer","text":"A Ravanusa (AG). Operiamo a Ravanusa e nei comuni limitrofi."}},{"@type":"Question","name":"Come possiamo contattarvi in caso di necessità?","acceptedAnswer":{"@type":"Answer","text":"Contattateci in qualsiasi momento, giorno e notte: vi assistiamo con rispetto, discrezione e umanità."}}]}</script>
 </head>
 <body>
 
@@ -595,7 +596,37 @@
     </section>
 
     <!-- ========== FOOTER ========== -->
-    <footer class="footer">
+    
+<!-- FAQ (EMC) -->
+<section class="emcfaq-sec" id="faq">
+  <div class="emcfaq-wrap">
+    <p class="emcfaq-eye">FAQ</p>
+    <h2 class="emcfaq-title">Domande frequenti</h2>
+    <div class="emcfaq-list">
+      <details><summary>Siete disponibili 24 ore su 24?</summary><p>Sì, siamo reperibili 24 ore su 24, 7 giorni su 7, tutto l’anno. Potete contattarci in qualsiasi momento.</p></details>
+      <details><summary>Di quali servizi vi occupate?</summary><p>Organizziamo funerali completi: trasporto e vestizione, camera ardente, allestimenti floreali, cremazione, fotoceramica e servizi cimiteriali.</p></details>
+      <details><summary>Gestite la cremazione e il trasporto salme?</summary><p>Sì, ci occupiamo della cremazione e del trasporto salme nazionali e internazionali, seguendo ogni fase con cura e discrezione.</p></details>
+      <details><summary>Vi occupate delle pratiche burocratiche?</summary><p>Sì, gestiamo tutte le pratiche e i documenti necessari, sollevando la famiglia da ogni incombenza in un momento delicato.</p></details>
+      <details><summary>Dove vi trovate?</summary><p>A Ravanusa (AG). Operiamo a Ravanusa e nei comuni limitrofi.</p></details>
+      <details><summary>Come possiamo contattarvi in caso di necessità?</summary><p>Contattateci in qualsiasi momento, giorno e notte: vi assistiamo con rispetto, discrezione e umanità.</p></details>
+    </div>
+  </div>
+</section>
+<style>
+.emcfaq-sec{background:#f3efe6;padding:72px 20px;font-family:'Inter',sans-serif}
+.emcfaq-wrap{max-width:820px;margin:0 auto}
+.emcfaq-eye{text-align:center;text-transform:uppercase;letter-spacing:.2em;font-size:13px;font-weight:700;color:#937a25;margin:0 0 8px}
+.emcfaq-title{text-align:center;font-family:'Playfair Display',Georgia,serif;font-size:36px;color:#2c2c2c;margin:0 0 30px}
+.emcfaq-list details{background:#ffffff;border:1px solid #e4ddcc;border-radius:14px;margin-bottom:12px;padding:0 22px}
+.emcfaq-list summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:700;color:#2c2c2c;display:flex;justify-content:space-between;gap:14px;align-items:center;font-size:17px}
+.emcfaq-list summary::-webkit-details-marker{display:none}
+.emcfaq-list summary::after{content:"+";font-size:24px;font-weight:400;color:#b8972f;transition:.2s;flex-shrink:0}
+.emcfaq-list details[open] summary::after{transform:rotate(45deg)}
+.emcfaq-list details p{padding:0 0 18px;margin:0;color:#5f5a50;line-height:1.65}
+@media(max-width:600px){.emcfaq-title{font-size:27px}}
+</style>
+
+<footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
