@@ -295,73 +295,9 @@
             });
         }
 
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            var nome = document.getElementById('nome');
-            var telefono = document.getElementById('telefono');
-            var email = document.getElementById('email');
-            var messaggio = document.getElementById('messaggio');
-            var privacy = document.getElementById('privacy');
-
-            var isValid = true;
-
-            if (!nome.value.trim()) {
-                showFieldError('nome', true);
-                isValid = false;
-            } else {
-                showFieldError('nome', false);
-            }
-
-            if (!telefono.value.trim() || !validatePhone(telefono.value)) {
-                showFieldError('telefono', true);
-                isValid = false;
-            } else {
-                showFieldError('telefono', false);
-            }
-
-            if (email.value.trim() && !validateEmail(email.value.trim())) {
-                showFieldError('email', true);
-                isValid = false;
-            } else {
-                showFieldError('email', false);
-            }
-
-            if (!messaggio.value.trim()) {
-                showFieldError('messaggio', true);
-                isValid = false;
-            } else {
-                showFieldError('messaggio', false);
-            }
-
-            if (!privacy.checked) {
-                showCheckboxError(true);
-                isValid = false;
-            } else {
-                showCheckboxError(false);
-            }
-
-            if (!isValid) return;
-
-            var subject = encodeURIComponent('Richiesta dal sito web - ' + nome.value.trim());
-            var body = encodeURIComponent(
-                'Nome: ' + nome.value.trim() + '\n' +
-                'Telefono: ' + telefono.value.trim() + '\n' +
-                'Email: ' + (email.value.trim() || 'Non specificata') + '\n\n' +
-                'Messaggio:\n' + messaggio.value.trim()
-            );
-
-            window.location.href = 'mailto:dirosaservizi@gmail.com?subject=' + subject + '&body=' + body;
-
-            contactForm.style.display = 'none';
-            if (formSuccess) formSuccess.style.display = 'block';
-
-            setTimeout(function () {
-                contactForm.reset();
-                contactForm.style.display = 'block';
-                if (formSuccess) formSuccess.style.display = 'none';
-            }, 5000);
-        });
+        // NB: l'invio del form e' gestito da uno <script> ISOLATO in fondo a
+        // index.html (POST reale all'Apps Script EMC) con il proprio toast,
+        // cosi' nessun errore in questo file puo' impedirne l'aggancio.
     }
 
 })();

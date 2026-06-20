@@ -550,7 +550,7 @@
                     </div>
                     <div class="form-group">
                         <label for="telefono">Telefono *</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono" required>
+                        <input type="tel" id="telefono" name="telefono" inputmode="numeric" autocomplete="tel" pattern="[0-9+ ]*" maxlength="20" oninput="this.value=this.value.replace(/[^0-9+ ]/g,'')" placeholder="Il tuo numero di telefono" required>
                         <p class="error-message">Inserisci il tuo numero di telefono</p>
                     </div>
                     <div class="form-group">
@@ -573,6 +573,7 @@
                     <button type="submit" class="btn btn-primary btn-submit">
                         <i class="fas fa-paper-plane"></i> Invia Messaggio
                     </button>
+                    <div class="form-note" id="formNote"></div>
                 </form>
                 <div class="form-success" id="formSuccess">
                     <i class="fas fa-check-circle"></i>
@@ -734,6 +735,52 @@
     <!-- Scripts -->
     <script src="js/cookie.js"></script>
     <script src="js/main.js"></script>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <style>
+    .form-note{font-size:14px;margin-top:12px;padding:11px 14px;border-radius:10px;display:none;font-weight:600}
+    .form-note.ok{display:block;background:rgba(76,175,80,.14);color:#2d8a4e}
+    .form-note.err{display:block;background:rgba(199,57,49,.12);color:#c0392b}
+    #toast{position:fixed;left:50%;top:16px;transform:translate(-50%,-24px);max-width:92%;padding:15px 22px;border-radius:14px;font-size:15px;font-weight:700;color:#fff;text-align:center;box-shadow:0 14px 38px rgba(0,0,0,.28);z-index:99999;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+    #toast.show{opacity:1;transform:translate(-50%,0)}
+    #toast.ok{background:#2d8a4e}#toast.err{background:#c0392b}
+    </style>
+    <!-- Contact form: script ISOLATO e indipendente (invio reale via Apps Script EMC). -->
+    <script>
+    (function(){
+      function init(){
+        var form=document.getElementById('contactForm');
+        if(!form) return;
+        var note=document.getElementById('formNote');
+        var success=document.getElementById('formSuccess');
+        var API='https://script.google.com/macros/s/AKfycbxLCgN0-mHN86Dk37a5m-p2A3DgMjc8b__aCO_9oBA_amLUn5MlipebKalo5qNIoSWl/exec';
+        var OK='Grazie! Abbiamo ricevuto la tua richiesta, ti ricontatteremo al più presto.';
+        var ERR='Ops, qualcosa è andato storto. Riprova o chiamaci direttamente.';
+        var REQ='Compila i campi obbligatori (nome, telefono e messaggio).';
+        var PRIV='Per inviare, accetta la Privacy Policy.';
+        function val(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+        function showToast(msg,type){var t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.className=type;setTimeout(function(){t.classList.add('show');},10);clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},6000);}
+        function showNote(type,msg){if(note){note.className='form-note '+type;note.textContent=msg;}showToast(msg,type);try{if(note)note.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}}
+        var btn=form.querySelector('button[type="submit"]');
+        var btnLabel=btn?btn.innerHTML:'';
+        form.addEventListener('submit',function(e){
+          e.preventDefault();
+          var honey=form.querySelector('[name="_honey"]');
+          if(honey&&honey.value) return;
+          var nome=val('nome'), tel=val('telefono'), email=val('email'), messaggio=val('messaggio');
+          var privacy=document.getElementById('privacy');
+          if(!nome||!tel||!messaggio){showNote('err',REQ);return;}
+          if(privacy&&!privacy.checked){showNote('err',PRIV);return;}
+          if(btn){btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Invio in corso...';}
+          fetch(API,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({site:'fratellidirosa',name:nome,email:email,phone:tel,message:messaggio})})
+          .then(function(){showNote('ok',OK);form.reset();if(success){form.style.display='none';success.style.display='block';setTimeout(function(){form.style.display='block';success.style.display='none';},5000);}})
+          .catch(function(){showNote('err',ERR);})
+          .finally(function(){if(btn){btn.disabled=false;btn.innerHTML=btnLabel;}});
+        });
+      }
+      if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+    })();
+    </script>
 
 </body>
 </html>
