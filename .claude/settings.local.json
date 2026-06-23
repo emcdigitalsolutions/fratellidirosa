@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(ls \"C:\\\\workspace\\\\fratellidirosa\\\\images\\\\cameraardente\"\" && echo \"---\" && ls \"C:workspacefratellidirosaimagescarrofunebre\"\")",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nRestyling completo: tema oro/grigio, logo, testimonianze, nuovi servizi e foto\n\n- Sostituito tema scuro con palette elegante oro e grigio ispirata al logo\n- Rimossa pioggia di croci e decorazioni SVG da tutte le sezioni\n- Inserito logo aziendale in header e footer \\(sostituisce icona DR\\)\n- Aggiunta sezione Testimonianze con 2 recensioni \\(M.N. e G.D.\\)\n- Aggiunto servizio \"Trasporto e Rimpatrio Salme\" con mezzi propri\n- Sostituite foto camera ardente con nuove immagini dedicate\n- Aggiornata galleria con foto camera ardente, carro funebre e rimpatrio\n- Aggiornate pagine legal \\(privacy, cookie-policy\\) con nuovo logo\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nConfigura dominio personalizzato agenziafunebrefratellidirosa.it\n\n- Aggiunto file CNAME per GitHub Pages\n- Aggiornati URL in og:image, twitter:image e og:url al nuovo dominio\n- Aggiornati sitemap.xml e robots.txt con il nuovo dominio\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(magick:*)",
+      "Bash(python:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)",
+      "Bash(nslookup:*)",
+      "Bash(gh api:*)",
+      "Bash(timeout:*)",
+      "Bash(powershell:*)",
+      "Bash(git -C C:/workspace/fratellidirosa pull)",
+      "Bash(git -C C:/workspace/fratellidirosa log --oneline -3)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(python3:*)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(git -C C:/workspace/fratellidirosa status)",
+      "Bash(git -C C:/workspace/fratellidirosa diff --stat)",
+      "Bash(git -C C:/workspace/fratellidirosa diff)",
+      "Bash(git -C C:/workspace/fratellidirosa add css/style.css index.html images/logo-transparent.png images/rimpatriosalme/06.jpeg images/rimpatriosalme/01.png)",
+      "Bash(git -C C:/workspace/fratellidirosa commit -m \"$\\(cat <<''EOF''\nLogo trasparente, riposizionamento foto hero, aggiornamento galleria\n\n- Aggiunto logo-transparent.png e usato in header e footer\n- Aggiunto object-position alla foto hero per inquadrare i fratelli\n- Aggiornate immagini galleria \\(nuove foto camera ardente, carro funebre, rimpatrio\\)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C C:/workspace/fratellidirosa push)",
+      "Bash(git -C C:/workspace/fratellidirosa pull --rebase)",
+      "Bash(git -C C:/workspace/fratellidirosa ls-files images/)",
+      "Bash(git -C C:/workspace/fratellidirosa add index.html css/style.css)",
+      "Bash(git -C C:/workspace/fratellidirosa commit -m \"$\\(cat <<''EOF''\nFoto hero: usa giuseppegaspare.jpg e centra inquadratura\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C C:/workspace/fratellidirosa diff index.html)",
+      "Bash(git -C C:/workspace/fratellidirosa add index.html)",
+      "Bash(git -C C:/workspace/fratellidirosa commit -m \"$\\(cat <<''EOF''\nAggiorna og:image e twitter:image a giuseppegaspare.jpg\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C C:/workspace/fratellidirosa commit -m \"$\\(cat <<''EOF''\nCard rimpatrio: icona macchina e rimossa parola logistico\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C C:/workspace/fratellidirosa add css/style.css)",
+      "Bash(git -C C:/workspace/fratellidirosa commit -m \"$\\(cat <<''EOF''\nAggiunge margine superiore al logo navbar\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+1) Inserire logo in alto a sinistra e in basso a sinistra invece del quadratino DR (foto in C:\workspace\fratellidirosa\images\logo.png)
+2) Eliminare pioggia di croci e anche tutto questo nero e richiamiamo i colori del logo (che sembrano essere oro e grigio)
+3) Aggiungere nuova foto della camera ardente, togliere quella che abbiamo inserito (foto in C:\workspace\fratellidirosa\images\cameraardente)
+4) Nella parte i nostri servizi aggiungi la voce mezzi propri o vedi tu come impostarla per specificare anche il servizio di rimpatrio salme in italia ed estero e viceversa (C:\workspace\fratellidirosa\images\carrofunebre e C:\workspace\fratellidirosa\images\rimpatriosalme)
+5) Aggiungere la voce testimonianze e mettere: "Ho conosciuto l'Agenzia funebre dei Fratelli De Rosa in occasione della recente scomparsa di mia zia. Ho trovato nei titolari della ditta non solo disponibilità ed efficacia nell'organizzare con rapidità il trasporto della salma da Palermo a Ravanusa, ma anche precisione e attenzione minima ai dettagli per tutto ciò che ha riguardato l'allestimento della camera ardente, le esequie, la sepoltura. Il che ha costituito per me motivo di non poco sollievo in un momento così difficile qual è quello del lutto" M.N., "Agenzia molto fornita, disponibilità e cordialità assicurata. Molto Professionale" G.D.
+
