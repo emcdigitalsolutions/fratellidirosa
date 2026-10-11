@@ -1,0 +1,5 @@
+# Materiale interno: non va pubblicato sul sito (GitHub Pages pubblica tutto il repo)
+questionario/
+*.pptx
+modifichedafare.txt
+.claude/
